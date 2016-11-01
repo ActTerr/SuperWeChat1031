@@ -4,8 +4,9 @@ import android.content.Context;
 
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
-import cn.ucai.superwechat.DemoHelper;
-import cn.ucai.superwechat.DemoHelper.DataSyncListener;
+import cn.ucai.superwechat.SuperWeChatHelper;
+import cn.ucai.superwechat.SuperWeChatHelper.DataSyncListener;
+import cn.ucai.superwechat.ui.ContactListFragment;
 import cn.ucai.superwechat.utils.PreferenceManager;
 import com.hyphenate.easeui.domain.EaseUser;
 
@@ -47,7 +48,7 @@ public class UserProfileManager {
 		return true;
 	}
 
-	public void addSyncContactInfoListener(DataSyncListener listener) {
+	public void addSyncContactInfoListener(ContactListFragment.ContactInfoSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -56,7 +57,7 @@ public class UserProfileManager {
 		}
 	}
 
-	public void removeSyncContactInfoListener(DataSyncListener listener) {
+	public void removeSyncContactInfoListener(ContactListFragment.ContactInfoSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -77,7 +78,7 @@ public class UserProfileManager {
 				isSyncingContactInfosWithServer = false;
 				// in case that logout already before server returns,we should
 				// return immediately
-				if (!DemoHelper.getInstance().isLoggedIn()) {
+				if (!SuperWeChatHelper.getInstance().isLoggedIn()) {
 					return;
 				}
 				if (callback != null) {

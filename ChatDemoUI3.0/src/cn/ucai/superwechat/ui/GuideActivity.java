@@ -2,6 +2,7 @@ package cn.ucai.superwechat.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import butterknife.ButterKnife;
@@ -21,17 +22,26 @@ public class GuideActivity extends BaseActivity {
         setContentView(R.layout.activity_guide);
         ButterKnife.bind(this);
         mContext=this;
+        setListener();
     }
 
-    @OnClick({R.id.btn_login, R.id.btn_register})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_login:
+    private void setListener() {
+        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("main","login被点击");
                 MFGT.gotoLogin(mContext);
-                break;
-            case R.id.btn_register:
+            }
+        });
+        findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("main","注册被点击");
                 MFGT.gotoRegister(mContext);
-                break;
-        }
+            }
+        });
     }
+
+
+
 }
