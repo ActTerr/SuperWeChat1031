@@ -17,8 +17,13 @@ import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.dao.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
+
 import com.hyphenate.exceptions.HyphenateException;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,7 +39,12 @@ public class RegisterActivity extends BaseActivity {
 	private EditText userNameEditText;
 	private EditText passwordEditText;
 	private EditText confirmPwdEditText;
-
+	private EditText userNickEditText;
+	Activity mContext;
+	String username;
+	String pwd;
+	String confirm_pwd;
+	String nick;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,12 +52,14 @@ public class RegisterActivity extends BaseActivity {
 		userNameEditText = (EditText) findViewById(R.id.username);
 		passwordEditText = (EditText) findViewById(R.id.password);
 		confirmPwdEditText = (EditText) findViewById(R.id.confirm_password);
+		userNickEditText= (EditText) findViewById(R.id.usernick);
 	}
 
 	public void register(View view) {
-		final String username = userNameEditText.getText().toString().trim();
-		final String pwd = passwordEditText.getText().toString().trim();
-		String confirm_pwd = confirmPwdEditText.getText().toString().trim();
+		username = userNameEditText.getText().toString().trim();
+		pwd = passwordEditText.getText().toString().trim();
+		confirm_pwd = confirmPwdEditText.getText().toString().trim();
+		nick=userNickEditText.getText().toString().trim();
 		if (TextUtils.isEmpty(username)) {
 			Toast.makeText(this, getResources().getString(R.string.User_name_cannot_be_empty), Toast.LENGTH_SHORT).show();
 			userNameEditText.requestFocus();
@@ -64,7 +76,7 @@ public class RegisterActivity extends BaseActivity {
 			Toast.makeText(this, getResources().getString(R.string.Two_input_password), Toast.LENGTH_SHORT).show();
 			return;
 		}
-
+		Register();
 		if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(pwd)) {
 			final ProgressDialog pd = new ProgressDialog(this);
 			pd.setMessage(getResources().getString(R.string.Is_the_registered));
@@ -109,6 +121,20 @@ public class RegisterActivity extends BaseActivity {
 			}).start();
 
 		}
+	}
+
+	private void Register() {
+		NetDao.UserRegister(mContext, username, pwd, nick, new OkHttpUtils.OnCompleteListener<Result>() {
+			@Override
+			public void onSuccess(Result result) {
+
+			}
+
+			@Override
+			public void onError(String error) {
+
+			}
+		});
 	}
 
 	public void back(View view) {

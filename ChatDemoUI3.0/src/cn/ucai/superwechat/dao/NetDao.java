@@ -45,6 +45,13 @@ public class NetDao {
                 .post()
                 .execute(listener);
     }
+    public static void UnRegister(Context context,String userName,OkHttpUtils.OnCompleteListener<Result> listener){
+        OkHttpUtils<Result> utils=new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_UNREGISTER)
+                .addParam(I.User.USER_NAME,userName)
+                .targetClass(Result.class)
+                .execute(listener);
+    }
 
     public static void updateAvatar(Context context,String userName,String avatarType,File file,OkHttpUtils.OnCompleteListener<String> listener){
         OkHttpUtils<String> utils=new OkHttpUtils<>(context);

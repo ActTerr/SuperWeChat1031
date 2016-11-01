@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="昵称:"/>
             <EditText
+                android:id="@+id/usernick"
                 android:textSize="20sp"
                 android:hint="你的昵称"
                 android:inputType="textPassword"
