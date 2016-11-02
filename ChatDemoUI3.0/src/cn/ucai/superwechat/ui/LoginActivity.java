@@ -13,6 +13,7 @@
  */
 package cn.ucai.superwechat.ui;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -37,9 +38,11 @@ import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.bean.UserAvatar;
 import cn.ucai.superwechat.dao.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.db.SuperWeChatManager;
+import cn.ucai.superwechat.dao.UserDao;
 import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.MD5;
 import cn.ucai.superwechat.utils.MFGT;
@@ -60,10 +63,10 @@ public class LoginActivity extends BaseActivity {
     String currentUsername;
     String currentPassword;
     ProgressDialog pd;
+    Activity mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // enter the main activity if already logged in
         if (SuperWeChatHelper.getInstance().isLoggedIn()) {
             autoLogin = true;
@@ -73,7 +76,7 @@ public class LoginActivity extends BaseActivity {
         }
         setContentView(R.layout.login);
         ButterKnife.bind(this);
-
+        mContext=this;
         usernameEditText = (EditText) findViewById(R.id.username);
         passwordEditText = (EditText) findViewById(R.id.password);
 
@@ -222,6 +225,12 @@ public class LoginActivity extends BaseActivity {
             public void onSuccess(Result result) {
                 if(result!=null&result.getRetCode()== I.MSG_SUCCESS){
                     pd.dismiss();
+                    UserAvatar user= (UserAvatar) result.getRetData();
+                    if(user!=null){
+                        UserDao userDao=new UserDao(mContext);
+                        userDao.saveUser(user);
+                        SuperWeChatHelper.getInstance().setCurrentUserName(user.getMUserName());
+                    }
                     CommonUtils.showMsgShortToast(I.MSG_LOGIN_SUCCESS);
                     Intent intent = new Intent(LoginActivity.this,
                             MainActivity.class);
