@@ -179,7 +179,7 @@ public class PreferenceManager {
 		editor.apply();
 	}
 
-	public void setCurrentUserAvatar(String avatar) {
+	public void setCurrentUser(String avatar) {
 		editor.putString(SHARED_KEY_CURRENTUSER_AVATAR, avatar);
 		editor.apply();
 	}
@@ -188,7 +188,7 @@ public class PreferenceManager {
 		return mSharedPreferences.getString(SHARED_KEY_CURRENTUSER_NICK, null);
 	}
 
-	public String getCurrentUserAvatar() {
+	public String getCurrentUser() {
 		return mSharedPreferences.getString(SHARED_KEY_CURRENTUSER_AVATAR, null);
 	}
 

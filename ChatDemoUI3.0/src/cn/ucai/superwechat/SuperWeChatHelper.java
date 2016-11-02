@@ -46,6 +46,7 @@ import com.hyphenate.easeui.controller.EaseUI.EaseUserProfileProvider;
 import com.hyphenate.easeui.domain.EaseEmojicon;
 import com.hyphenate.easeui.domain.EaseEmojiconGroupEntity;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.model.EaseNotifier;
 import com.hyphenate.easeui.model.EaseNotifier.EaseNotificationInfoProvider;
@@ -214,6 +215,11 @@ public class SuperWeChatHelper {
             public EaseUser getUser(String username) {
                 return getUserInfo(username);
             }
+
+            @Override
+            public User getAppUser(String username) {
+                return getUserAppInfo(username);
+            }
         });
 
         //set options 
@@ -352,6 +358,12 @@ public class SuperWeChatHelper {
                 return intent;
             }
         });
+    }
+
+    private User getUserAppInfo(String username) {
+        User user=userDao.getUser(username);
+
+        return user;
     }
 
     EMConnectionListener connectionListener;

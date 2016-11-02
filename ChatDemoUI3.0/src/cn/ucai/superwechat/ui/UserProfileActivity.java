@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import com.bumptech.glide.Glide;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
+
+import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -42,8 +44,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private ProgressDialog dialog;
 	private RelativeLayout rlNickName;
 	
-	
-	
+	String userNick;
+	String User;
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -77,8 +79,9 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		if(username != null){
     		if (username.equals(EMClient.getInstance().getCurrentUser())) {
     			tvUsername.setText(EMClient.getInstance().getCurrentUser());
+
     			EaseUserUtils.setUserNick(username, tvNickName);
-                EaseUserUtils.setUserAvatar(this, username, headAvatar);
+                EaseUserUtils.setUserAvatar(this, User, headAvatar);
     		} else {
     			tvUsername.setText(username);
     			EaseUserUtils.setUserNick(username, tvNickName);
@@ -248,18 +251,18 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			Bitmap photo = extras.getParcelable("data");
 			Drawable drawable = new BitmapDrawable(getResources(), photo);
 			headAvatar.setImageDrawable(drawable);
-			uploadUserAvatar(Bitmap2Bytes(photo));
+			uploadUser(Bitmap2Bytes(photo));
 		}
 
 	}
 	
-	private void uploadUserAvatar(final byte[] data) {
+	private void uploadUser(final byte[] data) {
 		dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
-				final String avatarUrl = SuperWeChatHelper.getInstance().getUserProfileManager().uploadUserAvatar(data);
+				final String avatarUrl = SuperWeChatHelper.getInstance().getUserProfileManager().uploadUser(data);
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {

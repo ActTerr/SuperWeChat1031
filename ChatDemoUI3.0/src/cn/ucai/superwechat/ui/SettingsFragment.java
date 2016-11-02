@@ -33,9 +33,12 @@ import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import cn.ucai.superwechat.Constant;
+import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.SuperWeChatModel;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.dao.NetDao;
+
 import com.hyphenate.easeui.widget.EaseSwitchButton;
 import com.hyphenate.util.EMLog;
 
@@ -107,7 +110,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 
     private SuperWeChatModel settingsModel;
     private EMOptions chatOptions;
-	
+	ProgressDialog pd;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.em_fragment_conversation_settings, container, false);
@@ -335,6 +338,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 				break;
 			case R.id.btn_logout:
 				logout();
+
 				break;
 			case R.id.ll_black_list:
 				startActivity(new Intent(getActivity(), BlacklistActivity.class));
@@ -367,8 +371,14 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 		
 	}
 
+	private void logoutAppServer() {
+		SuperWeChatApplication.getInstance().setUser(null);
+		((MainActivity) getActivity()).finish();
+		startActivity(new Intent(getActivity(), LoginActivity.class));
+	}
+
 	void logout() {
-		final ProgressDialog pd = new ProgressDialog(getActivity());
+		pd = new ProgressDialog(getActivity());
 		String st = getResources().getString(R.string.Are_logged_out);
 		pd.setMessage(st);
 		pd.setCanceledOnTouchOutside(false);
@@ -379,10 +389,9 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 			public void onSuccess() {
 				getActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						pd.dismiss();
+						logoutAppServer();
 						// show login screen
-						((MainActivity) getActivity()).finish();
-						startActivity(new Intent(getActivity(), LoginActivity.class));
+
 						
 					}
 				});

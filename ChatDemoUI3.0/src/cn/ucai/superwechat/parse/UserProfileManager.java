@@ -120,7 +120,7 @@ public class UserProfileManager {
 			currentUser = new EaseUser(username);
 			String nick = getCurrentUserNick();
 			currentUser.setNick((nick != null) ? nick : username);
-			currentUser.setAvatar(getCurrentUserAvatar());
+			currentUser.setAvatar(getCurrentUser());
 		}
 		return currentUser;
 	}
@@ -133,10 +133,10 @@ public class UserProfileManager {
 		return isSuccess;
 	}
 
-	public String uploadUserAvatar(byte[] data) {
+	public String uploadUser(byte[] data) {
 		String avatarUrl = ParseManager.getInstance().uploadParseAvatar(data);
 		if (avatarUrl != null) {
-			setCurrentUserAvatar(avatarUrl);
+			setCurrentUser(avatarUrl);
 		}
 		return avatarUrl;
 	}
@@ -148,7 +148,7 @@ public class UserProfileManager {
 			public void onSuccess(EaseUser value) {
 			    if(value != null){
     				setCurrentUserNick(value.getNick());
-    				setCurrentUserAvatar(value.getAvatar());
+    				setCurrentUser(value.getAvatar());
 			    }
 			}
 
@@ -167,17 +167,17 @@ public class UserProfileManager {
 		PreferenceManager.getInstance().setCurrentUserNick(nickname);
 	}
 
-	private void setCurrentUserAvatar(String avatar) {
+	private void setCurrentUser(String avatar) {
 		getCurrentUserInfo().setAvatar(avatar);
-		PreferenceManager.getInstance().setCurrentUserAvatar(avatar);
+		PreferenceManager.getInstance().setCurrentUser(avatar);
 	}
 
 	private String getCurrentUserNick() {
 		return PreferenceManager.getInstance().getCurrentUserNick();
 	}
 
-	private String getCurrentUserAvatar() {
-		return PreferenceManager.getInstance().getCurrentUserAvatar();
+	private String getCurrentUser() {
+		return PreferenceManager.getInstance().getCurrentUser();
 	}
 
 }

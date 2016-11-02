@@ -18,8 +18,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.easemob.redpacketsdk.RedPacket;
-
-import cn.ucai.superwechat.bean.UserAvatar;
+import com.hyphenate.easeui.domain.User;
 
 public class SuperWeChatApplication extends Application {
 
@@ -27,7 +26,7 @@ public class SuperWeChatApplication extends Application {
 	private static SuperWeChatApplication instance;
 	// login user name
 	public final String PREF_USERNAME = "username";
-	UserAvatar userAvatar;
+	User user;
 	String userName;
 	/**
 	 * nickname for current user, the nickname instead of ID be shown when user receive notification from APNs
@@ -67,11 +66,11 @@ public class SuperWeChatApplication extends Application {
 		this.userName = userName;
 	}
 
-	public UserAvatar getUserAvatar() {
-		return userAvatar;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserAvatar(UserAvatar userAvatar) {
-		this.userAvatar = userAvatar;
+	public void setUser(User User) {
+		this.user = User;
 	}
 }

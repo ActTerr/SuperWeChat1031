@@ -3,16 +3,13 @@ package cn.ucai.superwechat.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.User;
 
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.bean.UserAvatar;
 import cn.ucai.superwechat.db.UserDao;
 
 /**
@@ -40,15 +37,15 @@ public class SplashActivity extends BaseActivity {
 				if (SuperWeChatHelper.getInstance().isLoggedIn()) {
 					// auto login mode, make sure all group and conversation is loaed before enter the main screen
 					long start = System.currentTimeMillis();
-					UserAvatar user=SuperWeChatApplication.getInstance().getUserAvatar();
+					User user=SuperWeChatApplication.getInstance().getUser();
 					EMClient.getInstance().groupManager().loadAllGroups();
 					EMClient.getInstance().chatManager().loadAllConversations();
 					String username=SuperWeChatHelper.getInstance().getCurrentUsernName();
 					if (user==null&&username!=null){
-						cn.ucai.superwechat.dao.UserDao userDao=new cn.ucai.superwechat.dao.UserDao(mContext);
+						UserDao userDao=new UserDao(mContext);
 						user=userDao.getUser(username);
 						if (user!=null){
-							SuperWeChatApplication.getInstance().setUserAvatar(user);
+							SuperWeChatApplication.getInstance().setUser(user);
 						}
 					}
 

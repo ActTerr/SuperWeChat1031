@@ -53,7 +53,15 @@ public class DbOpenHelper extends SQLiteOpenHelper{
             + UserDao.PREF_TABLE_NAME + " ("
             + UserDao.COLUMN_NAME_DISABLED_GROUPS + " TEXT, "
             + UserDao.COLUMN_NAME_DISABLED_IDS + " TEXT);";
-	
+	private static final String USER_TABLE_CREATE = "CREATE TABLE "
+			+ cn.ucai.superwechat.db.UserDao.USER_TABLE_NAME + " ("
+			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_NAME + " TEXT PRIMARY KEY, "
+			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_NICK + " TEXT, "
+			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_ID + " INTEGER, "
+			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_TYPE + " INTEGER, "
+			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_PATH + " TEXT, "
+			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_SUFFIX + " TEXT, "
+			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME + " TEXT);";
 	private DbOpenHelper(Context context) {
 		super(context, getUserDatabaseName(), null, DATABASE_VERSION);
 	}
@@ -75,7 +83,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 		db.execSQL(INIVTE_MESSAGE_TABLE_CREATE);
 		db.execSQL(CREATE_PREF_TABLE);
 		db.execSQL(ROBOT_TABLE_CREATE);
-		
+		db.execSQL(USER_TABLE_CREATE);
 	}
 
 	@Override
@@ -112,5 +120,5 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 	        instance = null;
 	    }
 	}
-	
+
 }
