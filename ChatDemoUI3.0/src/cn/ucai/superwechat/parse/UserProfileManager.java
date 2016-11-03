@@ -9,6 +9,7 @@ import cn.ucai.superwechat.SuperWeChatHelper.DataSyncListener;
 import cn.ucai.superwechat.ui.ContactListFragment;
 import cn.ucai.superwechat.utils.PreferenceManager;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class UserProfileManager {
 	private boolean isSyncingContactInfosWithServer = false;
 
 	private EaseUser currentUser;
+
+	private User appCurrentUser;
 
 	public UserProfileManager() {
 	}
@@ -179,5 +182,6 @@ public class UserProfileManager {
 	private String getCurrentUser() {
 		return PreferenceManager.getInstance().getCurrentUser();
 	}
+
 
 }

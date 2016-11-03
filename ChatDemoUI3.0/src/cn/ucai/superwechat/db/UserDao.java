@@ -13,6 +13,7 @@
  */
 package cn.ucai.superwechat.db;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -116,4 +117,17 @@ public class UserDao {
     public void saveRobotUser(List<RobotUser> robotList){
     	SuperWeChatManager.getInstance().saveRobotList(robotList);
     }
+
+	public void saveAppContact(User user) {
+		SuperWeChatManager.getInstance().saveAppContact(user);
+	}
+
+	public Map<String,User> getAppContactList() {
+		return SuperWeChatManager.getInstance().getAppContactList();
+
+	}
+
+	public void saveAppContactList(ArrayList<User> mList) {
+		SuperWeChatManager.getInstance().saveAppContactList(mList);
+	}
 }

@@ -1,6 +1,7 @@
 package com.hyphenate.easeui.utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,15 +11,16 @@ import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.controller.EaseUI.EaseUserProfileProvider;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 
 public class EaseUserUtils {
     
     static EaseUserProfileProvider userProvider;
-    
+
     static {
         userProvider = EaseUI.getInstance().getUserProfileProvider();
     }
-    
+    static final String TAG=EaseUserUtils.class.getName();
     /**
      * get EaseUser according username
      * @param username
@@ -28,6 +30,12 @@ public class EaseUserUtils {
         if(userProvider != null)
             return userProvider.getUser(username);
         
+        return null;
+    }
+    public static User getUserAppInfo(String username){
+        if(userProvider!=null)
+            return userProvider.getAppUser(username);
+
         return null;
     }
     
@@ -55,13 +63,21 @@ public class EaseUserUtils {
      */
     public static void setUserNick(String username,TextView textView){
         if(textView != null){
-        	EaseUser user = getUserInfo(username);
-        	if(user != null && user.getNick() != null){
-        		textView.setText(user.getNick());
+//        	EaseUser user = getUserInfo(username);
+            User user=getUserAppInfo(username);
+            Log.e(TAG,user.toString());
+        	if(user != null && user.getMUserNick() != null){
+                Log.e(TAG,"进入获取昵称分支");
+        		textView.setText(user.getMUserNick());
+
         	}else{
+                Log.e(TAG,"进入把昵称设置成用户名分支");
         		textView.setText(username);
         	}
         }
     }
-    
+
+    public static void setUserInitialLetter(User user) {
+
+    }
 }

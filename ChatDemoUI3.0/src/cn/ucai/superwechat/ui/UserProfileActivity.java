@@ -9,6 +9,8 @@ import com.hyphenate.chat.EMClient;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.utils.L;
+
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 
@@ -43,9 +45,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private TextView tvUsername;
 	private ProgressDialog dialog;
 	private RelativeLayout rlNickName;
-	
-	String userNick;
-	String User;
+	String TAG=UserProfileActivity.class.getName();
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -78,11 +78,12 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		}
 		if(username != null){
     		if (username.equals(EMClient.getInstance().getCurrentUser())) {
+				L.e(TAG,"进入有用户名的分支");
     			tvUsername.setText(EMClient.getInstance().getCurrentUser());
-
-    			EaseUserUtils.setUserNick(username, tvNickName);
-                EaseUserUtils.setUserAvatar(this, User, headAvatar);
+				EaseUserUtils.setUserNick(username, tvNickName);
+                EaseUserUtils.setUserAvatar(this, username, headAvatar);
     		} else {
+				L.e(TAG,"进入无用户名的分支");
     			tvUsername.setText(username);
     			EaseUserUtils.setUserNick(username, tvNickName);
     			EaseUserUtils.setUserAvatar(this, username, headAvatar);

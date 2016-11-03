@@ -38,6 +38,7 @@ import cn.ucai.superwechat.ui.ChatActivity;
 import cn.ucai.superwechat.ui.MainActivity;
 import cn.ucai.superwechat.ui.VideoCallActivity;
 import cn.ucai.superwechat.ui.VoiceCallActivity;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.PreferenceManager;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.controller.EaseUI.EaseEmojiconInfoProvider;
@@ -63,6 +64,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 public class SuperWeChatHelper {
+    public void setCurrentUser(User user) {
+    }
+
     /**
      * data sync listener
      */
@@ -84,6 +88,8 @@ public class SuperWeChatHelper {
     protected EMMessageListener messageListener = null;
 
 	private Map<String, EaseUser> contactList;
+
+    private Map<String, User> appContactList;
 
 	private Map<String, RobotUser> robotList;
 
@@ -218,6 +224,7 @@ public class SuperWeChatHelper {
 
             @Override
             public User getAppUser(String username) {
+                L.e(TAG,"获取用户");
                 return getUserAppInfo(username);
             }
         });
@@ -361,10 +368,26 @@ public class SuperWeChatHelper {
     }
 
     private User getUserAppInfo(String username) {
-        User user=userDao.getUser(username);
+        // To get instance of EaseUser, here we get it from the user list in memory
+        // You'd better cache it if you get it from your server
+        User user = null;
 
+        user = getAppContactList().get(username);
+        if (user!=null){
+            Log.e(TAG,user.toString());
+        }
+
+        // if user is not in your contacts, set inital letter for him/her
+        if(user == null){
+            user = new User(username);
+            EaseCommonUtils.setUserAppInitialLetter(user);
+        }
+        Log.e(TAG,"2"+user.toString());
         return user;
+
     }
+
+
 
     EMConnectionListener connectionListener;
     /**
@@ -1235,7 +1258,8 @@ public class SuperWeChatHelper {
         isBlackListSyncedWithServer = false;
 
         isGroupAndContactListenerRegisted = false;
-        
+
+        setAppContactList(null);
         setContactList(null);
         setRobotList(null);
         getUserProfileManager().reset();
@@ -1249,5 +1273,48 @@ public class SuperWeChatHelper {
     public void popActivity(Activity activity) {
         easeUI.popActivity(activity);
     }
+    public void setAppContactList(Map<String, User> aContactList) {
+        if(aContactList == null){
+            if (appContactList != null) {
+                appContactList.clear();
+            }
+            return;
+        }
 
+        appContactList = aContactList;
+    }
+
+    /**
+     * save single contact
+     */
+    public void saveAppContact(User user){
+        appContactList.put(user.getMUserName(), user);
+        superWeChatModel.saveAppContact(user);
+    }
+
+    /**
+     * get contact list
+     *
+     * @return
+     */
+    public Map<String, User> getAppContactList() {
+        if (isLoggedIn() && appContactList == null) {
+            appContactList = superWeChatModel.getAppContactList();
+        }
+
+        // return a empty non-null object to avoid app crash
+        if(appContactList == null){
+            return new Hashtable<String, User>();
+        }
+
+        return appContactList;
+    }
+    public void updateAppContactList(List<User> contactInfoList) {
+        for (User u : contactInfoList) {
+            appContactList.put(u.getMUserName(), u);
+        }
+        ArrayList<User> mList = new ArrayList<User>();
+        mList.addAll(appContactList.values());
+        superWeChatModel.saveAppContactList(mList);
+    }
 }

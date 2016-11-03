@@ -45,8 +45,10 @@ import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.db.SuperWeChatManager;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.utils.CommonUtils;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MD5;
 import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.utils.ResultUtils;
 
 /**
  * Login screen
@@ -207,7 +209,7 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.btn_login, R.id.btn_goRegister})
+    @OnClick({R.id.btn_login, R.id.btn_goRegister,R.id.iv_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
@@ -215,34 +217,36 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.btn_goRegister:
                 MFGT.gotoRegister(this);
+
+                break;
+            case R.id.iv_back:
+                MFGT.finish(mContext);
                 break;
         }
     }
 
     private void loginAppServer() {
 
-        NetDao.UserLogin(this, currentUsername,  MD5.getMessageDigest(currentPassword), new OkHttpUtils.OnCompleteListener<Result>() {
+        NetDao.UserLogin(this, currentUsername,  MD5.getMessageDigest(currentPassword), new OkHttpUtils.OnCompleteListener<String>() {
             @Override
-            public void onSuccess(Result result) {
-                if(result!=null&result.getRetCode()== I.MSG_SUCCESS){
-                    pd.dismiss();
-                    Log.e(TAG,result.getRetData().toString());
-                    User user= (User) result.getRetData();
-                    if(user!=null){
-                        UserDao userDao=new UserDao(mContext);
-                        userDao.saveUser(user);
-                        SuperWeChatHelper.getInstance().setCurrentUserName(user.getMUserName());
+            public void onSuccess(String s) {
+                if(s!=null){
+                    Result result = ResultUtils.getResultFromJson(s, User.class);
+                    if(result!=null && result.isRetMsg()){
+                        User user = (User) result.getRetData();
+                        if(user!=null) {
+                            UserDao dao = new UserDao(mContext);
+                            dao.saveUser(user);
+                            SuperWeChatHelper.getInstance().setCurrentUser(user);
+                            SuperWeChatHelper.getInstance().saveAppContact(user);
+                            loginSuccess();
+                        }
+                    }else{
+                        pd.dismiss();
+                        L.e(TAG,"login fail,"+result);
                     }
-                    CommonUtils.showMsgShortToast(I.MSG_LOGIN_SUCCESS);
-                    Intent intent = new Intent(LoginActivity.this,
-                            MainActivity.class);
-                    startActivity(intent);
-
-                    finish();
-                }else {
+                }else{
                     pd.dismiss();
-
-                    return;
                 }
             }
 
@@ -254,9 +258,40 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    private void loginSuccess() {
+        // ** manually load all local groups and conversation
+        EMClient.getInstance().groupManager().loadAllGroups();
+        EMClient.getInstance().chatManager().loadAllConversations();
+
+        // update current user's display name for APNs
+        boolean updatenick = EMClient.getInstance().updateCurrentUserNick(
+                SuperWeChatApplication.currentUserNick.trim());
+        if (!updatenick) {
+            Log.e("LoginActivity", "update current user nick fail");
+        }
+
+        if (!LoginActivity.this.isFinishing() && pd.isShowing()) {
+            pd.dismiss();
+        }
+        // get user's info (this should be get from App's server or 3rd party service)
+        SuperWeChatHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
+
+        Intent intent = new Intent(LoginActivity.this,
+                MainActivity.class);
+        startActivity(intent);
+
+        finish();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         pd.dismiss();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MFGT.finish(mContext);
     }
 }

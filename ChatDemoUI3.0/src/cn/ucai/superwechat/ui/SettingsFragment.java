@@ -371,11 +371,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 		
 	}
 
-	private void logoutAppServer() {
-		SuperWeChatApplication.getInstance().setUser(null);
-		((MainActivity) getActivity()).finish();
-		startActivity(new Intent(getActivity(), LoginActivity.class));
-	}
+
 
 	void logout() {
 		pd = new ProgressDialog(getActivity());
@@ -389,9 +385,10 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 			public void onSuccess() {
 				getActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						logoutAppServer();
 						// show login screen
-
+						pd.dismiss();
+						((MainActivity) getActivity()).finish();
+						startActivity(new Intent(getActivity(), LoginActivity.class));
 						
 					}
 				});
