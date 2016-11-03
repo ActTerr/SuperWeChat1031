@@ -134,10 +134,10 @@ public class MainActivity extends BaseActivity {
 		contactListFragment = new ContactListFragment();
 		SettingsFragment settingFragment = new SettingsFragment();
 		fragments = new Fragment[] { conversationListFragment, contactListFragment, settingFragment};
-
-		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, conversationListFragment)
-				.add(R.id.fragment_container, contactListFragment).hide(contactListFragment).show(conversationListFragment)
-				.commit();
+//
+//		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, conversationListFragment)
+//				.add(R.id.fragment_container, contactListFragment).hide(contactListFragment).show(conversationListFragment)
+//				.commit();
 
 		//register broadcast receiver to receive the change of group from SuperWeChatHelper
 		registerBroadcastReceiver();
@@ -167,14 +167,14 @@ public class MainActivity extends BaseActivity {
 	 * init views
 	 */
 	private void initView() {
-		unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
-		unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
-		mTabs = new Button[3];
-		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
-		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
-		mTabs[2] = (Button) findViewById(R.id.btn_setting);
+		//unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
+		//unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
+//		mTabs = new Button[3];
+//		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
+//		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
+//		mTabs[2] = (Button) findViewById(R.id.btn_setting);
 		// select first tab
-		mTabs[0].setSelected(true);
+		//mTabs[0].setSelected(true);
 	}
 
 	/**
@@ -182,31 +182,31 @@ public class MainActivity extends BaseActivity {
 	 * 
 	 * @param view
 	 */
-	public void onTabClicked(View view) {
-		switch (view.getId()) {
-		case R.id.btn_conversation:
-			index = 0;
-			break;
-		case R.id.btn_address_list:
-			index = 1;
-			break;
-		case R.id.btn_setting:
-			index = 2;
-			break;
-		}
-		if (currentTabIndex != index) {
-			FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
-			trx.hide(fragments[currentTabIndex]);
-			if (!fragments[index].isAdded()) {
-				trx.add(R.id.fragment_container, fragments[index]);
-			}
-			trx.show(fragments[index]).commit();
-		}
-		mTabs[currentTabIndex].setSelected(false);
-		// set current tab selected
-		mTabs[index].setSelected(true);
-		currentTabIndex = index;
-	}
+//	public void onTabClicked(View view) {
+//		switch (view.getId()) {
+//		case R.id.btn_conversation:
+//			index = 0;
+//			break;
+//		case R.id.btn_address_list:
+//			index = 1;
+//			break;
+//		case R.id.btn_setting:
+//			index = 2;
+//			break;
+//		}
+//		if (currentTabIndex != index) {
+//			FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
+//			trx.hide(fragments[currentTabIndex]);
+//			if (!fragments[index].isAdded()) {
+//				trx.add(R.id.fragment_container, fragments[index]);
+//			}
+//			trx.show(fragments[index]).commit();
+//		}
+//		mTabs[currentTabIndex].setSelected(false);
+//		// set current tab selected
+//		mTabs[index].setSelected(true);
+//		currentTabIndex = index;
+//	}
 
 	EMMessageListener messageListener = new EMMessageListener() {
 		
@@ -415,8 +415,8 @@ public class MainActivity extends BaseActivity {
 		super.onResume();
 		
 		if (!isConflict && !isCurrentAccountRemoved) {
-			updateUnreadLabel();
-			updateUnreadAddressLable();
+//			updateUnreadLabel();
+			//updateUnreadAddressLable();
 		}
 
 		// unregister this event listener when this activity enters the
