@@ -145,4 +145,10 @@
     <string name="msg_501">获取附近的人失败</string>
     <string name="msg_999">未知错误</string>
     <string name="msg_1">非法请求</string>
+    <string name="str_me_album">相册</string>
+    <string name="str_me_collect">收藏</string>
+    <string name="str_me_money">钱包</string>
+    <string name="str_me_card">卡包</string>
+    <string name="str_me_smail">表情</string>
+    <string name="str_me_setting">设置</string>
 </resources>
