@@ -1,12 +1,14 @@
 package com.hyphenate.easeui.utils;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.controller.EaseUI.EaseUserProfileProvider;
@@ -16,7 +18,6 @@ import com.hyphenate.easeui.domain.User;
 public class EaseUserUtils {
     
     static EaseUserProfileProvider userProvider;
-
     static {
         userProvider = EaseUI.getInstance().getUserProfileProvider();
     }
@@ -79,5 +80,28 @@ public class EaseUserUtils {
 
     public static void setUserInitialLetter(User user) {
 
+    }
+
+    public static void setCurrentUserName( TextView wechatNumber) {
+        if(wechatNumber != null){
+//        	EaseUser user = getUserInfo(username);
+            String username=EMClient.getInstance().getCurrentUser();
+               wechatNumber.setText("微信帐号："+username);
+
+        }
+    }
+
+    public static void setAppUserNick(TextView usernick) {
+        if(usernick!=null){
+            String usernam= EMClient.getInstance().getCurrentUser();
+            setUserNick(usernam,usernick);
+        }
+    }
+
+    public static void setAppUserAvatar(FragmentActivity activity, ImageView userAvatar) {
+        if (userAvatar!=null){
+            String usernam= EMClient.getInstance().getCurrentUser();
+            setUserAvatar(activity,usernam,userAvatar);
+        }
     }
 }

@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     public boolean isConflict = false;
     // user account was removed
     private boolean isCurrentAccountRemoved = false;
-
+    private PersonalCenterFragment personalFragment;
     MainTabAdpter mAdapter;
 
     /**
@@ -153,8 +153,8 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         UserDao userDao = new UserDao(this);
         conversationListFragment = new ConversationListFragment();
         contactListFragment = new ContactListFragment();
-        SettingsFragment settingFragment = new SettingsFragment();
-        fragments = new Fragment[]{conversationListFragment, contactListFragment, settingFragment};
+        personalFragment=new PersonalCenterFragment();
+        fragments = new Fragment[]{conversationListFragment, contactListFragment, personalFragment};
 //
 //		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, conversationListFragment)
 //				.add(R.id.fragment_container, contactListFragment).hide(contactListFragment).show(conversationListFragment)

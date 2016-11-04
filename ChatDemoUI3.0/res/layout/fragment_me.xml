@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <ScrollView
+        android:id="@+id/personal_view"
         android:layout_marginTop="15dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
