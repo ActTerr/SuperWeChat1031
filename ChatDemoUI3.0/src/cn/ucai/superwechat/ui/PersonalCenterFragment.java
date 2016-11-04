@@ -40,7 +40,7 @@ public class PersonalCenterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_me, container, false);
         ButterKnife.bind(this, view);
         mContext = (Activity) this.getContext();
-        initView();
+
         return view;
     }
 
@@ -49,6 +49,7 @@ public class PersonalCenterFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState!=null&&savedInstanceState.getBoolean("isConflict",false))
             return;
+        initView();
 
     }
 
@@ -59,7 +60,7 @@ public class PersonalCenterFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.txt_package, R.id.txt_set, R.id.personal_view})
+    @OnClick({R.id.txt_package, R.id.txt_set, R.id.enter_personal})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txt_package:
@@ -68,7 +69,8 @@ public class PersonalCenterFragment extends Fragment {
             case R.id.txt_set:
                 MFGT.startActivity(mContext,SettingsActivity.class);
                 break;
-            case R.id.personal_view:
+            case R.id.enter_personal:
+                MFGT.startActivity(mContext,UserProfileActivity.class);
                 break;
         }
     }
@@ -81,5 +83,11 @@ public class PersonalCenterFragment extends Fragment {
         }else if(((MainActivity)getActivity()).getCurrentAccountRemoved()){
             outState.putBoolean(Constant.ACCOUNT_REMOVED, true);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
     }
 }

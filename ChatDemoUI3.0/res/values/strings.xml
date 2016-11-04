@@ -151,4 +151,7 @@
     <string name="str_me_card">卡包</string>
     <string name="str_me_smail">表情</string>
     <string name="str_me_setting">设置</string>
+    <string name="str_main_address">通讯录</string>
+    <string name="str_main_find">发现</string>
+    <string name="str_main_me">我</string>
 </resources>

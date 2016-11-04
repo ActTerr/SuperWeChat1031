@@ -71,8 +71,7 @@ import cn.ucai.superwechat.widget.MFViewPager;
 public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
 
     protected static final String TAG = "MainActivity";
-    @BindView(R.id.tv_title_left)
-    TextView tvTitleLeft;
+
     @BindView(R.id.iv_title_right)
     ImageView ivTitleRight;
     @BindView(R.id.tabHost)
@@ -81,6 +80,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     MFViewPager layoutViewpager;
     @BindView(R.id.iv_back)
     ImageView ivBack;
+    @BindView(R.id.tv_title_left)
+    TextView tvTitleLeft;
+    @BindView(R.id.tv_title_center)
+    TextView tvTitleCenter;
     // textview for unread message count
     private TextView unreadLabel;
     // textview for unread event message
@@ -153,7 +156,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         UserDao userDao = new UserDao(this);
         conversationListFragment = new ConversationListFragment();
         contactListFragment = new ContactListFragment();
-        personalFragment=new PersonalCenterFragment();
+        personalFragment = new PersonalCenterFragment();
         fragments = new Fragment[]{conversationListFragment, contactListFragment, personalFragment};
 //
 //		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, conversationListFragment)
@@ -196,7 +199,9 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 //		mTabs[2] = (Button) findViewById(R.id.btn_setting);
         // select first tab
         //mTabs[0].setSelected(true);
-        tvTitleLeft.setVisibility(View.VISIBLE);
+        tvTitleLeft.setVisibility(View.GONE);
+        tvTitleCenter.setVisibility(View.VISIBLE);
+        tvTitleCenter.setText("微信");
         ivTitleRight.setVisibility(View.VISIBLE);
         ivBack.setVisibility(View.GONE);
         mAdapter = new MainTabAdpter(getSupportFragmentManager());
@@ -211,6 +216,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         tabHost.setChecked(0);
         tabHost.setOnCheckedChangeListener(this);
         layoutViewpager.setOnPageChangeListener(this);
+    }
+
+    private void setTitleText(int position) {
+        String text[]=new String[]{"微信","通讯录","发现","我"};
+        tvTitleCenter.setText(text[position]);
     }
 
     /**
@@ -351,6 +361,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     public void onPageSelected(int position) {
         tabHost.setChecked(position);
         layoutViewpager.setCurrentItem(position);
+        setTitleText(position);
     }
 
     @Override

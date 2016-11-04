@@ -348,8 +348,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 				startActivity(new Intent(mContext, OfflinePushNickActivity.class));
 				break;
 			case R.id.ll_user_profile:
-				startActivity(new Intent(mContext, UserProfileActivity.class).putExtra("setting", true)
-						.putExtra("username", EMClient.getInstance().getCurrentUser()));
+
 				break;
 			case R.id.switch_custom_server:
 				if(customServerSwitch.isSwitchOpen()){

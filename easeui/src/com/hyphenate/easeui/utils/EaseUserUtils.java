@@ -93,15 +93,15 @@ public class EaseUserUtils {
 
     public static void setAppUserNick(TextView usernick) {
         if(usernick!=null){
-            String usernam= EMClient.getInstance().getCurrentUser();
-            setUserNick(usernam,usernick);
+            String username= EMClient.getInstance().getCurrentUser();
+            setUserNick(username,usernick);
         }
     }
 
     public static void setAppUserAvatar(FragmentActivity activity, ImageView userAvatar) {
         if (userAvatar!=null){
-            String usernam= EMClient.getInstance().getCurrentUser();
-            setUserAvatar(activity,usernam,userAvatar);
+            String username= EMClient.getInstance().getCurrentUser();
+            setUserAvatar(activity,username,userAvatar);
         }
     }
 }
