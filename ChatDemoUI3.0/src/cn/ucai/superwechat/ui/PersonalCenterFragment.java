@@ -1,6 +1,7 @@
 package cn.ucai.superwechat.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.easemob.redpacketui.utils.RedPacketUtil;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 
 import butterknife.BindView;
@@ -70,7 +72,11 @@ public class PersonalCenterFragment extends Fragment {
                 MFGT.startActivity(mContext,SettingsActivity.class);
                 break;
             case R.id.enter_personal:
-                MFGT.startActivity(mContext,UserProfileActivity.class);
+                Intent intent=new Intent();
+                intent.setClass(mContext,UserProfileActivity.class);
+                String username= EMClient.getInstance().getCurrentUser();
+                intent.putExtra("username",username);
+                MFGT.startActivity(mContext,intent);
                 break;
         }
     }

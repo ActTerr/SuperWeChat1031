@@ -24,6 +24,7 @@
                 android:layout_height="0.3dp"
                 android:background="@color/black3" />
             <RelativeLayout
+                android:id="@+id/btn_avatar"
                 android:layout_marginLeft="15dp"
                 android:background="@color/white"
                 android:layout_width="match_parent"

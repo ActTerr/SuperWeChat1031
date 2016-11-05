@@ -12,7 +12,9 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.renderscript.Element;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -27,9 +29,16 @@ import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.domain.User;
+import com.hyphenate.easeui.utils.EaseImageUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.util.EasyUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +49,7 @@ import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.dao.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
@@ -88,7 +98,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
     private void initListener() {
         Intent intent = getIntent();
-        username= SuperWeChatHelper.getInstance().getCurrentUsernName();
+        username= intent.getStringExtra("username");
+        Log.e(TAG,username);
         boolean enableUpdate = intent.getBooleanExtra("setting", false);
         if (enableUpdate) {
 
@@ -205,7 +216,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                                 }
                                 @Override
                                 public void onError(String error) {
-
+                                    CommonUtils.showShortToast(error);
+                                    dialog.dismiss();
                                 }
                             });
 
@@ -227,13 +239,43 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                 break;
             case REQUESTCODE_CUTTING:
                 if (data != null) {
-                    setPicToView(data);
+                    updateUserAvatar(data);
                 }
                 break;
             default:
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void updateUserAvatar(final Intent data) {
+        dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
+        dialog.show();
+        File file=saveBitmapFile(data);
+        L.e(TAG,file.toString());
+        NetDao.updateAvatar(mContext, username, I.AVATAR_TYPE_USER_PATH, file, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                if(s!=null){
+                    Result result=ResultUtils.getResultFromJson(s,User.class);
+                    if(result!=null&&result.isRetMsg()){
+                        setPicToView(data);
+                    }else {
+                        dialog.dismiss();
+                        CommonUtils.showShortToast("错误代码"+result.getRetCode());
+                    }
+                }else {
+                    dialog.dismiss();
+                    CommonUtils.showShortToast(R.string.toast_updatephoto_fail);
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                L.e(TAG,error);
+                CommonUtils.showShortToast(R.string.toast_updatephoto_fail);
+            }
+        });
     }
 
     public void startPhotoZoom(Uri uri) {
@@ -260,13 +302,13 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             Bitmap photo = extras.getParcelable("data");
             Drawable drawable = new BitmapDrawable(getResources(), photo);
             headAvatar.setImageDrawable(drawable);
-            uploadUser(Bitmap2Bytes(photo));
+            uploadUserAvatar(Bitmap2Bytes(photo));
         }
 
     }
 
-    private void uploadUser(final byte[] data) {
-        dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
+    private void uploadUserAvatar(final byte[] data) {
+
         new Thread(new Runnable() {
 
             @Override
@@ -290,7 +332,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             }
         }).start();
 
-        dialog.show();
+
     }
 
 
@@ -301,7 +343,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     }
 
 
-    @OnClick({R.id.iv_back, R.id.btn_name})
+    @OnClick({R.id.iv_back, R.id.btn_name,R.id.btn_avatar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -310,6 +352,9 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             case R.id.btn_name:
                 updateNick();
                 break;
+            case R.id.btn_avatar:
+
+                uploadHeadPhoto();
         }
     }
 
@@ -328,5 +373,29 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                         updateRemoteNick(nickString);
                     }
                 }).setNegativeButton(R.string.dl_cancel, null).show();
+    }
+    public File saveBitmapFile(Intent data){
+        Bundle extra=data.getExtras();
+        if(extra!=null){
+            Bitmap bitmap=extra.getParcelable("data");
+            String path= EaseImageUtils.getImagePath(username+I.AVATAR_SUFFIX_JPG);
+            L.e(TAG,path.toString());
+            File file=new File(path);
+            try {
+                BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.PNG,100,bos);
+                try {
+                    bos.flush();
+                    bos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            return file;
+        }
+        return  null;
     }
 }
