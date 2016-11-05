@@ -39,6 +39,7 @@ import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.SuperWeChatModel;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.dao.NetDao;
+import cn.ucai.superwechat.utils.ExitActivityUtils;
 import cn.ucai.superwechat.utils.MFGT;
 
 import com.hyphenate.easeui.widget.EaseSwitchButton;
@@ -142,7 +143,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 		LinearLayout llChange = (LinearLayout) findViewById(R.id.ll_change);
 		logoutBtn = (Button) findViewById(R.id.btn_logout);
 		if(!TextUtils.isEmpty(EMClient.getInstance().getCurrentUser())){
-			logoutBtn.setText(getString(R.string.button_logout) + "(" + EMClient.getInstance().getCurrentUser() + ")");
+			logoutBtn.setText(getString(R.string.button_logout) );
 		}
 		customServerSwitch = (EaseSwitchButton) findViewById(R.id.switch_custom_server);
 
@@ -384,7 +385,7 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 					public void run() {
 						// show login screen
 						pd.dismiss();
-						MFGT.finish(mContext);
+						ExitActivityUtils.getInstance().exitActivity();
 						startActivity(new Intent(mContext, LoginActivity.class));
 						
 					}
