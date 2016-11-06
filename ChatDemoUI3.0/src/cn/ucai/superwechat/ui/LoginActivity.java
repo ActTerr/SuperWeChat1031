@@ -148,7 +148,7 @@ public class LoginActivity extends BaseActivity {
         final long start = System.currentTimeMillis();
         // call login method
         Log.d(TAG, "EMClient.getInstance().login");
-        EMClient.getInstance().login(currentUsername, currentPassword, new EMCallBack() {
+        EMClient.getInstance().login(currentUsername, MD5.getMessageDigest(currentPassword), new EMCallBack() {
 
             @Override
             public void onSuccess() {
@@ -236,9 +236,7 @@ public class LoginActivity extends BaseActivity {
                         User user = (User) result.getRetData();
                         if(user!=null) {
                             UserDao dao = new UserDao(mContext);
-                            dao.saveUser(user);
-                            SuperWeChatHelper.getInstance().setCurrentUser(user);
-                            SuperWeChatHelper.getInstance().saveAppContact(user);
+                            dao.saveAppContact(user);
                             loginSuccess();
                         }
                     }else{

@@ -2,14 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af7543f5-b69e-4ddd-9f02-9bbf93e8e6c6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/res/layout/activity_guide.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/GuideActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/utils/MFGT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/build/intermediates/classes/release/com/hyphenate/easeui/domain/User.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/build/intermediates/classes/release/com/hyphenate/easeui/utils/EaseCommonUtils$1GetAppInitialLetter.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/build/generated/source/buildConfig/androidTest/debug/cn/hyphenate/easeui/test/BuildConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/build/generated/source/buildConfig/debug/cn/hyphenate/easeui/BuildConfig.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/build/generated/source/r/androidTest/debug/cn/hyphenate/easeui/R.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/build/generated/source/r/androidTest/debug/cn/hyphenate/easeui/test/R.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/build/generated/source/r/debug/cn/hyphenate/easeui/R.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/domain/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/classes.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/outputs/aar/EaseUI-release.aar" afterPath="$PROJECT_DIR$/easeui/build/outputs/aar/EaseUI-release.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/build.gradle" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/SplashActivity.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/SplashActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/SuperWeChatHelper.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/SuperWeChatHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/dao/NetDao.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/dao/NetDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/db/SuperWeChatManager.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/db/SuperWeChatManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/LoginActivity.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/LoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/PersonalCenterFragment.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/PersonalCenterFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/RegisterActivity.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/RegisterActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/SettingsActivity.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/SettingsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/UserProfileActivity.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/UserProfileActivity.java" />
     </list>
     <ignored path="mSuperWeChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +40,11 @@
     <favorites_list name="mSuperWeChat" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ChatDemoUI3.0/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1598">
+            <state relative-caret-position="17">
               <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
               <folding />
             </state>
@@ -76,7 +87,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="AndroidView" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -91,6 +102,10 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -155,10 +170,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -270,7 +281,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="793" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="793" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -308,6 +319,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ChatDemoUI3.0/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChatDemoUI3.0/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ChatDemoUI3.0/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -318,7 +345,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ChatDemoUI3.0/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1598">
+        <state relative-caret-position="17">
           <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
           <folding />
         </state>

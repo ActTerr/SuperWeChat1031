@@ -386,8 +386,8 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 						// show login screen
 						pd.dismiss();
 						ExitActivityUtils.getInstance().exitActivity();
-						startActivity(new Intent(mContext, LoginActivity.class));
-						
+						startActivity(new Intent(mContext, LoginActivity.class)
+								.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
 					}
 				});
 			}

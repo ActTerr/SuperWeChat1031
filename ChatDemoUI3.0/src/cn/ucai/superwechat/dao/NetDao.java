@@ -71,5 +71,14 @@ public class NetDao {
                 .targetClass(String.class)
                 .execute(listener);
     }
+    public static void downloadAvatar(Context context,String userName,OkHttpUtils.OnCompleteListener<String> listener){
+        OkHttpUtils<String> utils=new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_DOWNLOAD_AVATAR)
+                .addParam(I.NAME_OR_HXID,userName)
+                .addParam(I.AVATAR_TYPE,I.AVATAR_TYPE_USER_PATH)
+                .addParam(I.Avatar.AVATAR_SUFFIX,I.AVATAR_SUFFIX_JPG)
+                .targetClass(String.class)
+                .execute(listener);
+    }
 
 }

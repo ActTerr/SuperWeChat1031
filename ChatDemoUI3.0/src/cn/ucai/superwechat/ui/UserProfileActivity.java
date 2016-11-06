@@ -6,7 +6,9 @@ import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -49,6 +51,7 @@ import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.dao.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
@@ -78,16 +81,17 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     ImageView headAvatar;
     private ProgressDialog dialog;
     private RelativeLayout rlNickName;
-    String TAG = UserProfileActivity.class.getName();
+    String TAG = "UserProfileActivity";
     User u;
     String username;
     Activity mContext;
+
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         setContentView(R.layout.em_activity_user_profile);
         ButterKnife.bind(this);
-        mContext=this;
+        mContext = this;
         initView();
         initListener();
     }
@@ -98,8 +102,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
     private void initListener() {
         Intent intent = getIntent();
-        username= intent.getStringExtra("username");
-        Log.e(TAG,username);
+        username = intent.getStringExtra("username");
+        Log.e(TAG, username);
         boolean enableUpdate = intent.getBooleanExtra("setting", false);
         if (enableUpdate) {
 
@@ -205,15 +209,20 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                             NetDao.updateNick(mContext, username, nickName, new OkHttpUtils.OnCompleteListener<String>() {
                                 @Override
                                 public void onSuccess(String s) {
-                                    Result result= ResultUtils.getResultFromJson(s,User.class);
-                                    u= (User) result.getRetData();
-                                    if (result.getRetCode()== I.MSG_SUCCESS){
-                                    dialog.dismiss();
-                                    Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatenick_success), Toast.LENGTH_SHORT)
-                                            .show();
-                                    tvNickName.setText(nickName);
+                                    Result result = ResultUtils.getResultFromJson(s, User.class);
+
+                                    if (result.getRetCode() == I.MSG_SUCCESS) {
+                                        dialog.dismiss();
+                                        User user = (User) result.getRetData();
+                                        updateLoclNick(user);
+                                        Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatenick_success), Toast.LENGTH_SHORT)
+                                                .show();
+                                        tvNickName.setText(nickName);
+                                        UserDao userdao = new UserDao(mContext);
+                                        userdao.updateUser(user);
                                     }
                                 }
+
                                 @Override
                                 public void onError(String error) {
                                     CommonUtils.showShortToast(error);
@@ -226,6 +235,12 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                 }
             }
         }).start();
+    }
+
+    private void updateLoclNick(User user) {
+        u=user;
+        SuperWeChatHelper.getInstance().saveAppContact(u);
+        EaseUserUtils.setAppUserNick(tvNickName);
     }
 
     @Override
@@ -251,20 +266,20 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     private void updateUserAvatar(final Intent data) {
         dialog = ProgressDialog.show(this, getString(R.string.dl_update_photo), getString(R.string.dl_waiting));
         dialog.show();
-        File file=saveBitmapFile(data);
-        L.e(TAG,file.toString());
+        File file = saveBitmapFile(data);
+        L.e(TAG, file.toString());
         NetDao.updateAvatar(mContext, username, I.AVATAR_TYPE_USER_PATH, file, new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
-                if(s!=null){
-                    Result result=ResultUtils.getResultFromJson(s,User.class);
-                    if(result!=null&&result.isRetMsg()){
+                if (s != null) {
+                    Result result = ResultUtils.getResultFromJson(s, User.class);
+                    if (result != null && result.isRetMsg()) {
                         setPicToView(data);
-                    }else {
+                    } else {
                         dialog.dismiss();
-                        CommonUtils.showShortToast("错误代码"+result.getRetCode());
+                        CommonUtils.showShortToast("错误代码" + result.getRetCode());
                     }
-                }else {
+                } else {
                     dialog.dismiss();
                     CommonUtils.showShortToast(R.string.toast_updatephoto_fail);
                 }
@@ -272,7 +287,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
             @Override
             public void onError(String error) {
-                L.e(TAG,error);
+                L.e(TAG, error);
                 CommonUtils.showShortToast(R.string.toast_updatephoto_fail);
             }
         });
@@ -343,7 +358,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     }
 
 
-    @OnClick({R.id.iv_back, R.id.btn_name,R.id.btn_avatar})
+    @OnClick({R.id.iv_back, R.id.btn_name, R.id.btn_avatar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -374,16 +389,22 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                     }
                 }).setNegativeButton(R.string.dl_cancel, null).show();
     }
-    public File saveBitmapFile(Intent data){
-        Bundle extra=data.getExtras();
-        if(extra!=null){
-            Bitmap bitmap=extra.getParcelable("data");
-            String path= EaseImageUtils.getImagePath(username+I.AVATAR_SUFFIX_JPG);
-            L.e(TAG,path.toString());
-            File file=new File(path);
+
+    public File saveBitmapFile(Intent data) {
+        Bundle extra = data.getExtras();
+        if (extra != null) {
+            Bitmap bitmap = extra.getParcelable("data");
+            long currenttime = System.currentTimeMillis();
+            String path = EaseImageUtils.getImagePath(username + currenttime + I.AVATAR_SUFFIX_JPG);
+            SharedPreferences sp = getSharedPreferences(username, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("avatar", path);
+            editor.commit();
+            L.e(TAG, path.toString());
+            File file = new File(path);
             try {
-                BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream(file));
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,bos);
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
                 try {
                     bos.flush();
                     bos.close();
@@ -396,6 +417,22 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             }
             return file;
         }
-        return  null;
+        return null;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showAavatar();
+        initListener();
+    }
+
+    private void showAavatar() {
+        String path = getSharedPreferences(username, MODE_PRIVATE).getString("avatar", "");
+        L.e(TAG, "从首选项取得" + path);
+        Bitmap bit = BitmapFactory.decodeFile(path);
+        headAvatar.setImageBitmap(bit);
+    }
+
+
 }

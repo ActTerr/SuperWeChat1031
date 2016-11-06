@@ -376,7 +376,6 @@ public class SuperWeChatHelper {
 
         user = getAppContactList().get(username);
         if (user!=null){
-            Log.e(TAG,user.toString());
         }
 
         // if user is not in your contacts, set inital letter for him/her
@@ -384,7 +383,7 @@ public class SuperWeChatHelper {
             user = new User(username);
             EaseCommonUtils.setUserAppInitialLetter(user);
         }
-        Log.e(TAG,"2"+user.toString());
+        Log.e(TAG,"getUserAppInfo: "+user.toString());
         return user;
 
     }
@@ -1300,7 +1299,7 @@ public class SuperWeChatHelper {
      * @return
      */
     public Map<String, User> getAppContactList() {
-        if (isLoggedIn() && appContactList == null) {
+        if (isLoggedIn() && (appContactList == null || appContactList.size()==0) ){
             appContactList = superWeChatModel.getAppContactList();
         }
 
