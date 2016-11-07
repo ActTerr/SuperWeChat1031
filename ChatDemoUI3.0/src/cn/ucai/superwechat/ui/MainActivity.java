@@ -234,7 +234,9 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
                     switch (position){
                         case 0:
                             break;
+
                         case 1:
+                            MFGT.gotoUserAddContact(mContext);
                             break;
                         case 2:
                             break;

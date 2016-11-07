@@ -152,4 +152,8 @@ public class EaseUserUtils {
 
         return null;
     }
+
+    public static void setAppUserNameWithInfo(String name,TextView wechatNumber) {
+        setAppUserName("wechat:",name,wechatNumber);
+    }
 }

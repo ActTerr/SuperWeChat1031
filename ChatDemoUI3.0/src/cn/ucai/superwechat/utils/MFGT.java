@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.hyphenate.easeui.domain.User;
+
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.ui.AddContactActivity;
+import cn.ucai.superwechat.ui.FriendProfileActivity;
 import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
 import cn.ucai.superwechat.ui.UserDetailActivity;
@@ -34,8 +38,14 @@ public class MFGT {
         startActivity(context, RegisterActivity.class);
     }
 
-
-    public static void gotoUserdetail(Activity context){
-        startActivity(context, UserDetailActivity.class);
+    public static void gotoUserAddContact(Activity context){
+        startActivity(context, AddContactActivity.class);
     }
+    public static void gotoFriendProfile(Activity context,User u){
+        Intent intent=new Intent();
+        intent.putExtra("user",u);
+        intent.setClass(context,FriendProfileActivity.class);
+        startActivity(context, intent);
+    }
+
 }

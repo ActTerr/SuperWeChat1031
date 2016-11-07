@@ -48,12 +48,12 @@
         android:layout_height="20dp"/>
     <TextView
         android:paddingLeft="15dp"
-      style="@style/list_txt_Style2"
+        style="@style/list_txt_Style2"
         android:text="设置备注和标签"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="21dp"
-       />
+        />
     <TextView
         style="@style/list_txt_Style2"
         android:text="地区"

@@ -16,6 +16,7 @@ package cn.ucai.superwechat.ui;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 
 import butterknife.BindView;
@@ -32,6 +34,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatHelper;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.dao.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.CommonUtils;
+import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.utils.ResultUtils;
 
 public class AddContactActivity extends BaseActivity {
     @BindView(R.id.iv_back)
@@ -48,7 +56,7 @@ public class AddContactActivity extends BaseActivity {
     private Button searchBtn;
     private String toAddUsername;
     private ProgressDialog progressDialog;
-
+    final String TAG="AddContactActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,9 +98,38 @@ public class AddContactActivity extends BaseActivity {
             //show the userame and add button if user exist
             searchedUserLayout.setVisibility(View.VISIBLE);
             nameText.setText(toAddUsername);
-
+            searchAppUser();
 
         }
+    }
+
+    private void searchAppUser() {
+        NetDao.findUser(this, toAddUsername, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                progressDialog.dismiss();
+                if(s!=null){
+                    Result result= ResultUtils.getResultFromJson(s,User.class);
+                    if (result.isRetMsg()){
+
+                        User u= (User) result.getRetData();
+                        if (u!=null){
+                            MFGT.gotoFriendProfile(AddContactActivity.this,u);
+                        }
+                    }else {
+
+                    }
+
+                }else {
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                progressDialog.dismiss();
+                Log.e(TAG,"error"+error);
+            }
+        });
     }
 
     /**
