@@ -68,4 +68,25 @@
         android:paddingLeft="15dp"
 
         android:text="更多"/>
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_add"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加好友"/>
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_sendMSG"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发送消息"/>
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_video"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="视频"/>
 </LinearLayout>

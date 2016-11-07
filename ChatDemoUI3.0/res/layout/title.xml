@@ -51,5 +51,14 @@
         android:layout_height="wrap_content"
         android:paddingRight="8dp"
         android:visibility="gone"/>
+    <Button
+        android:id="@+id/title_btn"
+        android:layout_marginRight="12dp"
+        android:text="发送"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:background="@color/green"/>
 
 </RelativeLayout>
