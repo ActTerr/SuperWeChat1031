@@ -15,6 +15,7 @@ package cn.ucai.superwechat.ui;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -32,6 +33,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,14 +58,18 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.adapter.MainTabAdpter;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
+import cn.ucai.superwechat.dialog.ActionItem;
+import cn.ucai.superwechat.dialog.TitlePopup;
 import cn.ucai.superwechat.runtimepermissions.PermissionsManager;
 import cn.ucai.superwechat.runtimepermissions.PermissionsResultAction;
+import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.widget.DMTabHost;
 import cn.ucai.superwechat.widget.MFViewPager;
 
@@ -71,7 +77,7 @@ import cn.ucai.superwechat.widget.MFViewPager;
 public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
 
     protected static final String TAG = "MainActivity";
-
+    Activity mContext;
     @BindView(R.id.iv_title_right)
     ImageView ivTitleRight;
     @BindView(R.id.tabHost)
@@ -84,6 +90,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     TextView tvTitleLeft;
     @BindView(R.id.tv_title_center)
     TextView tvTitleCenter;
+    TitlePopup mTitlePoup;
     // textview for unread message count
     private TextView unreadLabel;
     // textview for unread event message
@@ -111,7 +118,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext=this;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String packageName = getPackageName();
             PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
@@ -216,10 +223,30 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         tabHost.setChecked(0);
         tabHost.setOnCheckedChangeListener(this);
         layoutViewpager.setOnPageChangeListener(this);
+        mTitlePoup = new TitlePopup(this, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mTitlePoup.addAction(new ActionItem(this, R.string.menu_groupchat, R.drawable.icon_menu_group));
+        mTitlePoup.addAction(new ActionItem(this, R.string.menu_addfriend, R.drawable.icon_menu_addfriend));
+        mTitlePoup.addAction(new ActionItem(this, R.string.menu_qrcode, R.drawable.icon_menu_sao));
+        mTitlePoup.addAction(new ActionItem(this, R.string.menu_money, R.drawable.icon_menu_money));
+        mTitlePoup.setItemOnClickListener(new TitlePopup.OnItemOnClickListener() {
+            @Override
+            public void onItemClick(ActionItem item, int position) {
+                    switch (position){
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                    }
+            }
+        });
     }
 
     private void setTitleText(int position) {
-        String text[]=new String[]{"微信","通讯录","发现","我"};
+        String text[] = new String[]{"微信", "通讯录", "发现", "我"};
         tvTitleCenter.setText(text[position]);
     }
 
@@ -372,6 +399,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     @Override
     public void onCheckedChange(int checkedPosition, boolean byUser) {
         layoutViewpager.setCurrentItem(checkedPosition, false);
+    }
+
+    @OnClick(R.id.iv_title_right)
+    public void onClick() {
+        mTitlePoup.show(findViewById(R.id.title));
     }
 
     public class MyContactListener implements EMContactListener {

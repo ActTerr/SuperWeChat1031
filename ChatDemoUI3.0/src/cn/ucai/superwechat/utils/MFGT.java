@@ -7,6 +7,7 @@ import android.content.Intent;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
+import cn.ucai.superwechat.ui.UserDetailActivity;
 
 /**
  * Created by mac-yk on 2016/11/1.
@@ -31,5 +32,10 @@ public class MFGT {
     }
     public static void gotoRegister(Activity context){
         startActivity(context, RegisterActivity.class);
+    }
+
+
+    public static void gotoUserdetail(Activity context){
+        startActivity(context, UserDetailActivity.class);
     }
 }

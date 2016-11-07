@@ -384,6 +384,10 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ee_5.png"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable-hdpi-v4/default_hd_avatar.png",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/default_hd_avatar.png"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable-hdpi-v4/ease_login_error_icon.png",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ease_login_error_icon.png"
     },

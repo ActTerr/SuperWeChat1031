@@ -83,7 +83,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     private RelativeLayout rlNickName;
     String TAG = "UserProfileActivity";
     User u;
-    String username;
+
     Activity mContext;
 
     @Override
@@ -94,6 +94,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
         mContext = this;
         initView();
         initListener();
+
     }
 
     private void initView() {
@@ -101,31 +102,12 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     }
 
     private void initListener() {
-        Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-        Log.e(TAG, username);
-        boolean enableUpdate = intent.getBooleanExtra("setting", false);
-        if (enableUpdate) {
+        u = EaseUserUtils.getCurrentAppUserInfo();
+        u.toString();
+        EaseUserUtils.setCurrentAppUserAvatar(this,headAvatar);
+        EaseUserUtils.setCurrentAppUserNick(tvNickName);
+        EaseUserUtils.setCurrentAppUserName(tvUsername);
 
-            rlNickName.setOnClickListener(this);
-            headAvatar.setOnClickListener(this);
-        } else {
-
-        }
-        if (username != null) {
-            if (username.equals(EMClient.getInstance().getCurrentUser())) {
-                L.e(TAG, "进入有用户名的分支");
-                tvUsername.setText(EMClient.getInstance().getCurrentUser());
-                EaseUserUtils.setUserNick(username, tvNickName);
-                EaseUserUtils.setUserAvatar(this, username, headAvatar);
-            } else {
-                L.e(TAG, "进入无用户名的分支");
-                tvUsername.setText(username);
-                EaseUserUtils.setUserNick(username, tvNickName);
-                EaseUserUtils.setUserAvatar(this, username, headAvatar);
-                asyncFetchUserInfo(username);
-            }
-        }
     }
 
 
@@ -206,7 +188,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                         public void run() {
 
 
-                            NetDao.updateNick(mContext, username, nickName, new OkHttpUtils.OnCompleteListener<String>() {
+                            NetDao.updateNick(mContext, u.getMUserName(), nickName, new OkHttpUtils.OnCompleteListener<String>() {
                                 @Override
                                 public void onSuccess(String s) {
                                     Result result = ResultUtils.getResultFromJson(s, User.class);
@@ -240,7 +222,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     private void updateLoclNick(User user) {
         u=user;
         SuperWeChatHelper.getInstance().saveAppContact(u);
-        EaseUserUtils.setAppUserNick(tvNickName);
+        EaseUserUtils.setCurrentAppUserNick(tvNickName);
     }
 
     @Override
@@ -268,12 +250,14 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
         dialog.show();
         File file = saveBitmapFile(data);
         L.e(TAG, file.toString());
-        NetDao.updateAvatar(mContext, username, I.AVATAR_TYPE_USER_PATH, file, new OkHttpUtils.OnCompleteListener<String>() {
+        NetDao.updateAvatar(mContext, u.getMUserName(), I.AVATAR_TYPE_USER_PATH, file, new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
                 if (s != null) {
                     Result result = ResultUtils.getResultFromJson(s, User.class);
                     if (result != null && result.isRetMsg()) {
+                        User user= (User) result.getRetData();
+                        SuperWeChatHelper.getInstance().setAppContact(user);
                         setPicToView(data);
                     } else {
                         dialog.dismiss();
@@ -317,9 +301,9 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             Bitmap photo = extras.getParcelable("data");
             Drawable drawable = new BitmapDrawable(getResources(), photo);
             headAvatar.setImageDrawable(drawable);
-            uploadUserAvatar(Bitmap2Bytes(photo));
+            dialog.dismiss();
+           // uploadUserAvatar(Bitmap2Bytes(photo));
         }
-
     }
 
     private void uploadUserAvatar(final byte[] data) {
@@ -368,7 +352,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                 updateNick();
                 break;
             case R.id.btn_avatar:
-
+//                String imgaePath=EaseImageUtils.getImagePath(u.getAvatar());
+//                Log.e(TAG,imgaePath);
                 uploadHeadPhoto();
         }
     }
@@ -394,13 +379,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
         Bundle extra = data.getExtras();
         if (extra != null) {
             Bitmap bitmap = extra.getParcelable("data");
-            long currenttime = System.currentTimeMillis();
-            String path = EaseImageUtils.getImagePath(username + currenttime + I.AVATAR_SUFFIX_JPG);
-            SharedPreferences sp = getSharedPreferences(username, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putString("avatar", path);
-            editor.commit();
-            L.e(TAG, path.toString());
+            String path = EaseImageUtils.getImagePath(u.getMUserName()+I.AVATAR_SUFFIX_JPG);
+            L.e(TAG,"图片路径: "+ path.toString());
             File file = new File(path);
             try {
                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
@@ -423,16 +403,9 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     @Override
     protected void onResume() {
         super.onResume();
-        showAavatar();
         initListener();
     }
 
-    private void showAavatar() {
-        String path = getSharedPreferences(username, MODE_PRIVATE).getString("avatar", "");
-        L.e(TAG, "从首选项取得" + path);
-        Bitmap bit = BitmapFactory.decodeFile(path);
-        headAvatar.setImageBitmap(bit);
-    }
 
 
 }

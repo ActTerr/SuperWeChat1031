@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <RelativeLayout
+        android:id="@+id/enter_personal"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/userAvatar"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/a"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/userAvatar"
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="aaaa"
+            android:textSize="30sp"/>
+        <TextView
+            android:id="@+id/wechatNumber"
+            android:layout_below="@+id/username"
+            android:layout_toRightOf="@+id/userAvatar"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信:"
+            android:textSize="20sp"/>
+
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <TextView
+        android:paddingLeft="15dp"
+      style="@style/list_txt_Style2"
+        android:text="设置备注和标签"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+       />
+    <TextView
+        style="@style/list_txt_Style2"
+        android:text="地区"
+        android:paddingLeft="15dp"/>
+    <View
+        android:paddingLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+    <TextView
+        style="@style/list_txt_Style2"
+        android:paddingLeft="15dp"
+
+        android:text="更多"/>
+</LinearLayout>

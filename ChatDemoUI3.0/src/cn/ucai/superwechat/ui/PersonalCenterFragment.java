@@ -1,6 +1,7 @@
 package cn.ucai.superwechat.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,6 +42,7 @@ public class PersonalCenterFragment extends Fragment {
     @BindView(R.id.wechatNumber)
     TextView wechatNumber;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,8 +63,8 @@ public class PersonalCenterFragment extends Fragment {
     }
 
     private void initView() {
-        EaseUserUtils.setAppUserAvatar(getActivity(),userAvatar);
-        EaseUserUtils.setAppUserNick(usernick);
+        EaseUserUtils.setCurrentAppUserAvatar(getActivity(),userAvatar);
+        EaseUserUtils.setCurrentAppUserNick(usernick);
         EaseUserUtils.setCurrentUserName(wechatNumber);
     }
 
@@ -100,13 +102,6 @@ public class PersonalCenterFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initView();
-        showAvatar();
-    }
-    private void showAvatar() {
-        String username=EMClient.getInstance().getCurrentUser();
-        String path=getActivity().getSharedPreferences(username,MODE_PRIVATE).getString("avatar","");
-        Bitmap bit= BitmapFactory.decodeFile(path);
-        userAvatar.setImageBitmap(bit);
     }
 
 
