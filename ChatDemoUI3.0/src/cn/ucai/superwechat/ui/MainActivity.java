@@ -91,6 +91,8 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     @BindView(R.id.tv_title_center)
     TextView tvTitleCenter;
     TitlePopup mTitlePoup;
+    @BindView(R.id.title_btn)
+    Button titleBtn;
     // textview for unread message count
     private TextView unreadLabel;
     // textview for unread event message
@@ -118,7 +120,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext=this;
+        mContext = this;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             String packageName = getPackageName();
             PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
@@ -145,7 +147,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         ButterKnife.bind(this);
         // runtime permission for android 6.0, just require all permissions here for simple
         requestPermissions();
-
+        contactListFragment = new ContactListFragment();
         initView();
 
         //umeng api
@@ -162,7 +164,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         inviteMessgeDao = new InviteMessgeDao(this);
         UserDao userDao = new UserDao(this);
         conversationListFragment = new ConversationListFragment();
-        contactListFragment = new ContactListFragment();
+
         personalFragment = new PersonalCenterFragment();
         fragments = new Fragment[]{conversationListFragment, contactListFragment, personalFragment};
 //
@@ -209,6 +211,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         tvTitleLeft.setVisibility(View.GONE);
         tvTitleCenter.setVisibility(View.VISIBLE);
         tvTitleCenter.setText("微信");
+        titleBtn.setVisibility(View.GONE);
         ivTitleRight.setVisibility(View.VISIBLE);
         ivBack.setVisibility(View.GONE);
         mAdapter = new MainTabAdpter(getSupportFragmentManager());
@@ -231,18 +234,18 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         mTitlePoup.setItemOnClickListener(new TitlePopup.OnItemOnClickListener() {
             @Override
             public void onItemClick(ActionItem item, int position) {
-                    switch (position){
-                        case 0:
-                            break;
+                switch (position) {
+                    case 0:
+                        break;
 
-                        case 1:
-                            MFGT.gotoUserAddContact(mContext);
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                    }
+                    case 1:
+                        MFGT.gotoUserAddContact(mContext);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
             }
         });
     }
@@ -351,7 +354,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
             @Override
             public void onReceive(Context context, Intent intent) {
-                updateUnreadLabel();
+                //updateUnreadLabel();
                 updateUnreadAddressLable();
                 if (currentTabIndex == 0) {
                     // refresh conversation list
@@ -483,9 +486,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
             public void run() {
                 int count = getUnreadAddressCountTotal();
                 if (count > 0) {
-                    unreadAddressLable.setVisibility(View.VISIBLE);
+                    //unreadAddressLable.setVisibility(View.VISIBLE);
+                    tabHost.setHasNew(1,true);
                 } else {
-                    unreadAddressLable.setVisibility(View.INVISIBLE);
+                    //unreadAddressLable.setVisibility(View.INVISIBLE);
+                    tabHost.setHasNew(1,false);
                 }
             }
         });

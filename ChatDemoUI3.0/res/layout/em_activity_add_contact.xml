@@ -5,27 +5,10 @@
     android:background="#f2f2f2"
     android:orientation="vertical" >
 
+    <include layout="@layout/title"/>
 
-
-
-        <include layout="@layout/title" />
-
-
-    <RelativeLayout
-        android:onClick="searchContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
-        <Button
-
-            android:id="@+id/find"
-            android:layout_centerVertical="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            />
     <EditText
-        android:layout_toRightOf="@id/find"
-        android:id="@+id/edit_note"
+        android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="39dp"
         android:layout_margin="10dp"
@@ -35,10 +18,5 @@
         android:singleLine="true"
         android:textColorHint="#b3b3b3"
         android:textSize="18sp" />
-
-
-    </RelativeLayout>
-
-
 
 </LinearLayout>

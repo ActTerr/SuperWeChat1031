@@ -12,8 +12,6 @@ import cn.ucai.superwechat.ui.AddFriendActivity;
 import cn.ucai.superwechat.ui.FriendProfileActivity;
 import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
-import cn.ucai.superwechat.ui.UserDetailActivity;
-
 /**
  * Created by mac-yk on 2016/11/1.
  */

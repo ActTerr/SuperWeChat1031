@@ -479,6 +479,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".ui.AddFriendActivity"/>
+        <activity android:name=".ui.FriendProfileActivity"/>
     </application>
 
 </manifest>
