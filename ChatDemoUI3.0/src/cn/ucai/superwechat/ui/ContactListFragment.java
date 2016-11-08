@@ -24,7 +24,9 @@ import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.widget.ContactItemView;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
+import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.NetUtils;
 
@@ -124,7 +126,8 @@ public class ContactListFragment extends EaseContactListFragment {
                 EaseUser user = (EaseUser)listView.getItemAtPosition(position);
                 if (user != null) {
                     // demo中直接进入聊天页面，实际一般是进入用户详情页
-                    startActivity(new Intent(getActivity(),FriendProfileActivity.class).putExtra("user",user));
+                    User u= SuperWeChatHelper.getInstance().getAppContactList().get(user.getUsername());
+                    startActivity(new Intent(getActivity(),FriendProfileActivity.class).putExtra("user",u));
                     //startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", username));
                 }
             }
