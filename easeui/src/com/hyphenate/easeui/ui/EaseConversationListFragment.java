@@ -48,7 +48,7 @@ public class EaseConversationListFragment extends EaseBaseFragment{
     protected FrameLayout errorItemContainer;
 
     protected boolean isConflict;
-    
+
     protected EMConversationListener convListener = new EMConversationListener(){
 
 		@Override

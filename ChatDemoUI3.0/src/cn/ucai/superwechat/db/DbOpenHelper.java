@@ -62,6 +62,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_PATH + " TEXT, "
 			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_SUFFIX + " TEXT, "
 			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME + " TEXT);";
+
 	private DbOpenHelper(Context context) {
 		super(context, getUserDatabaseName(), null, DATABASE_VERSION);
 	}

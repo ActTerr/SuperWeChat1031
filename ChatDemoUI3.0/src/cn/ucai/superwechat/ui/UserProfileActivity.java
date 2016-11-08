@@ -6,19 +6,16 @@ import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.renderscript.Element;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -28,12 +25,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hyphenate.EMValueCallBack;
-import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseImageUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
-import com.hyphenate.util.EasyUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -79,6 +74,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     TextView tvTitleCenter;
     @BindView(R.id.userAvatar)
     ImageView headAvatar;
+    @BindView(R.id.title_btn)
+    Button titleBtn;
     private ProgressDialog dialog;
     private RelativeLayout rlNickName;
     String TAG = "UserProfileActivity";
@@ -92,19 +89,22 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
         setContentView(R.layout.em_activity_user_profile);
         ButterKnife.bind(this);
         mContext = this;
+//        String name=getIntent().getStringExtra("userId");
+//        UserDao userDao=new UserDao(mContext);
+//        u=userDao.getUser(name);
         initView();
         initListener();
 
     }
 
     private void initView() {
-
+        titleBtn.setVisibility(View.GONE);
     }
 
     private void initListener() {
         u = EaseUserUtils.getCurrentAppUserInfo();
         u.toString();
-        EaseUserUtils.setCurrentAppUserAvatar(this,headAvatar);
+        EaseUserUtils.setCurrentAppUserAvatar(this, headAvatar);
         EaseUserUtils.setCurrentAppUserNick(tvNickName);
         EaseUserUtils.setCurrentAppUserName(tvUsername);
 
@@ -220,7 +220,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
     }
 
     private void updateLoclNick(User user) {
-        u=user;
+        u = user;
         SuperWeChatHelper.getInstance().saveAppContact(u);
         EaseUserUtils.setCurrentAppUserNick(tvNickName);
     }
@@ -256,7 +256,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                 if (s != null) {
                     Result result = ResultUtils.getResultFromJson(s, User.class);
                     if (result != null && result.isRetMsg()) {
-                        User user= (User) result.getRetData();
+                        User user = (User) result.getRetData();
                         SuperWeChatHelper.getInstance().setAppContact(user);
                         setPicToView(data);
                     } else {
@@ -302,7 +302,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
             Drawable drawable = new BitmapDrawable(getResources(), photo);
             headAvatar.setImageDrawable(drawable);
             dialog.dismiss();
-           // uploadUserAvatar(Bitmap2Bytes(photo));
+            // uploadUserAvatar(Bitmap2Bytes(photo));
         }
     }
 
@@ -360,7 +360,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
     private void updateNick() {
         final EditText editText = new EditText(this);
-        new AlertDialog.Builder(this).setTitle(R.string.setting_nickname).setIcon(android.R.drawable.ic_dialog_info).setView(editText)
+        new Builder(this).setTitle(R.string.setting_nickname).setIcon(android.R.drawable.ic_dialog_info).setView(editText)
                 .setPositiveButton(R.string.dl_ok, new DialogInterface.OnClickListener() {
 
                     @Override
@@ -379,8 +379,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
         Bundle extra = data.getExtras();
         if (extra != null) {
             Bitmap bitmap = extra.getParcelable("data");
-            String path = EaseImageUtils.getImagePath(u.getMUserName()+I.AVATAR_SUFFIX_JPG);
-            L.e(TAG,"图片路径: "+ path.toString());
+            String path = EaseImageUtils.getImagePath(u.getMUserName() + I.AVATAR_SUFFIX_JPG);
+            L.e(TAG, "图片路径: " + path.toString());
             File file = new File(path);
             try {
                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
@@ -405,7 +405,6 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
         super.onResume();
         initListener();
     }
-
 
 
 }

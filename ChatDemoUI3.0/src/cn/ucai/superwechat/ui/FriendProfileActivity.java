@@ -1,6 +1,8 @@
 package cn.ucai.superwechat.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 
 import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+
+import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +38,7 @@ public class FriendProfileActivity extends BaseActivity {
     Button btnSendMSG;
     @BindView(R.id.btn_video)
     Button btnVideo;
-
+    static final String TAG="FriendProfileActivity";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,7 @@ public class FriendProfileActivity extends BaseActivity {
     }
 
     private void setUserInfo() {
+        Log.e(TAG,u.toString());
         EaseUserUtils.setAppUserAvatar(this, u.getMUserName(), userAvatar);
         EaseUserUtils.setAppUserNick(u.getMUserNick(), username);
         EaseUserUtils.setAppUserNameWithInfo(u.getMUserName(), wechatNumber);
@@ -80,6 +85,7 @@ public class FriendProfileActivity extends BaseActivity {
                 MFGT.gotoAddFriendMSG(this,u.getMUserName());
                 break;
             case R.id.btn_sendMSG:
+                startActivity(new Intent(this, ChatActivity.class).putExtra("userId",u.getMUserName()));
                 break;
             case R.id.btn_video:
                 break;

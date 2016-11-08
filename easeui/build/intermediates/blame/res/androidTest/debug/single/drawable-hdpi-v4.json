@@ -232,6 +232,10 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_record_animate_06.png"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/default_hd_avatar.png",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/bundles/debug/res/drawable-hdpi-v4/default_hd_avatar.png"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_video_recorder_start_btn.png",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_video_recorder_start_btn.png"
     },

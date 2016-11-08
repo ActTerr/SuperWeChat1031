@@ -1,6 +1,7 @@
 package com.hyphenate.easeui.utils;
 
 import android.content.Context;
+import android.nfc.Tag;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.ImageView;
@@ -107,8 +108,12 @@ public class EaseUserUtils {
 
     public static void setAppUserAvatar(Context context, String username, ImageView imageView){
         User user = getAppUserInfo(username);
+        if(user==null){
+            user=new User(username);
+        }
         if(user != null && user.getAvatar() != null){
             try {
+                Log.e(TAG,user.getAvatar());
                 int avatarResId = Integer.parseInt(user.getAvatar());
                 Glide.with(context).load(avatarResId).into(imageView);
             } catch (Exception e) {
@@ -156,4 +161,6 @@ public class EaseUserUtils {
     public static void setAppUserNameWithInfo(String name,TextView wechatNumber) {
         setAppUserName("wechat:",name,wechatNumber);
     }
+
+
 }

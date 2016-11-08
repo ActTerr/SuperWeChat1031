@@ -163,10 +163,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
         inviteMessgeDao = new InviteMessgeDao(this);
         UserDao userDao = new UserDao(this);
-        conversationListFragment = new ConversationListFragment();
 
-        personalFragment = new PersonalCenterFragment();
-        fragments = new Fragment[]{conversationListFragment, contactListFragment, personalFragment};
+//        conversationListFragment = new ConversationListFragment();
+//        personalFragment = new PersonalCenterFragment();
+//        fragments = new Fragment[]{conversationListFragment, contactListFragment, personalFragment};
 //
 //		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, conversationListFragment)
 //				.add(R.id.fragment_container, contactListFragment).hide(contactListFragment).show(conversationListFragment)
@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
      * init views
      */
     private void initView() {
-        //unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
+        unreadLabel = (TextView) findViewById(R.id.unread_count);
         //unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
 //		mTabs = new Button[3];
 //		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
@@ -219,7 +219,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         layoutViewpager.setOffscreenPageLimit(4);
         mAdapter.clear();
         mAdapter.addFragment(new ConversationListFragment(), getString(R.string.app_name));
-        mAdapter.addFragment(new ContactListFragment(), getString(R.string.contacts));
+        mAdapter.addFragment(contactListFragment, getString(R.string.contacts));
         mAdapter.addFragment(new DicoverFragment(), getString(R.string.discover));
         mAdapter.addFragment(new PersonalCenterFragment(), getString(R.string.me));
         mAdapter.notifyDataSetChanged();
@@ -354,14 +354,15 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
             @Override
             public void onReceive(Context context, Intent intent) {
-                //updateUnreadLabel();
+                updateUnreadLabel();
                 updateUnreadAddressLable();
-                if (currentTabIndex == 0) {
-                    // refresh conversation list
-                    if (conversationListFragment != null) {
-                        conversationListFragment.refresh();
-                    }
-                } else if (currentTabIndex == 1) {
+//                if (currentTabIndex == 0) {
+//                    //refresh conversation list
+//                    if (conversationListFragment != null) {
+//                        conversationListFragment.refresh();
+//                    }
+//                } else
+                    if (currentTabIndex == 1) {
                     if (contactListFragment != null) {
                         contactListFragment.refresh();
                     }
@@ -391,9 +392,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
     @Override
     public void onPageSelected(int position) {
+        currentTabIndex=position;
         tabHost.setChecked(position);
         layoutViewpager.setCurrentItem(position);
-        setTitleText(position);
+        //setTitleText(position);
     }
 
     @Override
@@ -403,6 +405,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
     @Override
     public void onCheckedChange(int checkedPosition, boolean byUser) {
+        currentTabIndex=checkedPosition;
         layoutViewpager.setCurrentItem(checkedPosition, false);
     }
 
@@ -531,8 +534,8 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         super.onResume();
 
         if (!isConflict && !isCurrentAccountRemoved) {
-//			updateUnreadLabel();
-            //updateUnreadAddressLable();
+			updateUnreadLabel();
+            updateUnreadAddressLable();
         }
 
         // unregister this event listener when this activity enters the

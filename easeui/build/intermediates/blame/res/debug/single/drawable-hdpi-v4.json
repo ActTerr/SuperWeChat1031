@@ -324,6 +324,10 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ease_chatting_biaoqing_btn_normal.png"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/drawable-hdpi-v4/default_hd_avatar.png",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/default_hd_avatar.png"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/drawable-hdpi-v4/ee_1.png",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ee_1.png"
     },

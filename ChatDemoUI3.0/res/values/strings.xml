@@ -154,4 +154,5 @@
     <string name="str_main_address">通讯录</string>
     <string name="str_main_find">发现</string>
     <string name="str_main_me">我</string>
+    <string name="newFriend">新的朋友</string>
 </resources>

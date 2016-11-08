@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+
     <cn.ucai.superwechat.widget.ContactItemView
         android:id="@+id/application_item"
         android:layout_width="match_parent"
