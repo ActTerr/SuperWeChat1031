@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 
-import java.io.Serializable;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -38,7 +36,10 @@ public class FriendProfileActivity extends BaseActivity {
     Button btnSendMSG;
     @BindView(R.id.btn_video)
     Button btnVideo;
-    static final String TAG="FriendProfileActivity";
+    static final String TAG = "FriendProfileActivity";
+    @BindView(R.id.title_btn)
+    Button titleBtn;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,7 @@ public class FriendProfileActivity extends BaseActivity {
     }
 
     private void initView() {
+        titleBtn.setVisibility(View.GONE);
         setUserInfo();
         isFriend();
     }
@@ -61,12 +63,12 @@ public class FriendProfileActivity extends BaseActivity {
             btnSendMSG.setVisibility(View.VISIBLE);
             btnVideo.setVisibility(View.VISIBLE);
         } else {
-           btnAdd.setVisibility(View.VISIBLE);
+            btnAdd.setVisibility(View.VISIBLE);
         }
     }
 
     private void setUserInfo() {
-        Log.e(TAG,u.toString());
+        Log.e(TAG, u.toString());
         EaseUserUtils.setAppUserAvatar(this, u.getMUserName(), userAvatar);
         EaseUserUtils.setAppUserNick(u.getMUserNick(), username);
         EaseUserUtils.setAppUserNameWithInfo(u.getMUserName(), wechatNumber);
@@ -82,10 +84,10 @@ public class FriendProfileActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_add:
-                MFGT.gotoAddFriendMSG(this,u.getMUserName());
+                MFGT.gotoAddFriendMSG(this, u.getMUserName());
                 break;
             case R.id.btn_sendMSG:
-                startActivity(new Intent(this, ChatActivity.class).putExtra("userId",u.getMUserName()));
+                startActivity(new Intent(this, ChatActivity.class).putExtra("userId", u.getMUserName()));
                 break;
             case R.id.btn_video:
                 break;

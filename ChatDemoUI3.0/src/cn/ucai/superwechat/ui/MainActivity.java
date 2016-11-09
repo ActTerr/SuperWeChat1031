@@ -164,7 +164,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         inviteMessgeDao = new InviteMessgeDao(this);
         UserDao userDao = new UserDao(this);
 
-//        conversationListFragment = new ConversationListFragment();
+        conversationListFragment = new ConversationListFragment();
 //        personalFragment = new PersonalCenterFragment();
 //        fragments = new Fragment[]{conversationListFragment, contactListFragment, personalFragment};
 //
@@ -234,16 +234,20 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         mTitlePoup.setItemOnClickListener(new TitlePopup.OnItemOnClickListener() {
             @Override
             public void onItemClick(ActionItem item, int position) {
+                setTitleText(position);
                 switch (position) {
                     case 0:
+
                         break;
 
                     case 1:
                         MFGT.gotoUserAddContact(mContext);
                         break;
                     case 2:
+                        ivTitleRight.setVisibility(View.GONE);
                         break;
                     case 3:
+                        ivTitleRight.setVisibility(View.GONE);
                         break;
                 }
             }

@@ -260,8 +260,10 @@ public class ContactListFragment extends EaseContactListFragment {
 							contactList.remove(tobeDeleteUser);
 							contactListLayout.refresh();
 
+
 						}
 					});
+
 				} catch (final Exception e) {
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
