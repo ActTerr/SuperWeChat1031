@@ -229,9 +229,11 @@ public class EaseContactListFragment extends EaseBaseFragment {
      * get contact list and sort, will filter out users in blacklist
      */
     protected void getContactList() {
+        if (contactList!=null){
         contactList.clear();
         if(contactsMap == null){
             return;
+            }
         }
         synchronized (this.contactsMap) {
             Iterator<Entry<String, EaseUser>> iterator = contactsMap.entrySet().iterator();

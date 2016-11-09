@@ -112,6 +112,9 @@ public class ConversationListFragment extends EaseConversationListFragment{
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        if (getUserVisibleHint()==false){
+            return true;
+        }
         boolean deleteMessage = false;
         if (item.getItemId() == R.id.delete_message) {
             deleteMessage = true;

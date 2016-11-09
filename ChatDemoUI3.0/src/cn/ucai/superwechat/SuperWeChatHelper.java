@@ -80,30 +80,7 @@ public class SuperWeChatHelper {
         superWeChatModel.saveAppContact(user);
     }
 
-    public void saveAddContact(String username) {
-        String mName = EaseUserUtils.getCurrentAppUserInfo().getMUserName();
-        NetDao.addContact(appContext, mName, username, new OkHttpUtils.OnCompleteListener<String>() {
-            @Override
-            public void onSuccess(String s) {
-                if (s != null) {
-                    Result result = ResultUtils.getResultFromJson(s, User.class);
-                    if (result != null && result.isRetMsg()) {
-                        CommonUtils.showShortToast("添加好友成功");
-                        User user = (User) result.getRetData();
-                        UserDao userDao = new UserDao(appContext);
-                        userDao.saveAppContact(user);
-                    } else {
-                        Log.e(TAG, "添加好友失败");
-                    }
-                }
-            }
 
-            @Override
-            public void onError(String error) {
-                Log.e(TAG, "error" + error);
-            }
-        });
-    }
 
     /**
      * data sync listener
@@ -667,8 +644,9 @@ public class SuperWeChatHelper {
     public class MyContactListener implements EMContactListener {
 
         @Override
-        public void onContactAdded(String username) {
+        public void onContactAdded(final String username) {
             // save contact
+            L.e(TAG,"对方同意，进入加好友请求");
             Map<String, EaseUser> localUsers = getContactList();
             Map<String, EaseUser> toAddUsers = new HashMap<String, EaseUser>();
             final EaseUser user = new EaseUser(username);
@@ -678,26 +656,38 @@ public class SuperWeChatHelper {
             }
             toAddUsers.put(username, user);
             localUsers.putAll(toAddUsers);
+
             Map<String, User> localAppUsers = getAppContactList();
             if (!localAppUsers.containsKey(username)) {
                 String mName = EMClient.getInstance().getCurrentUser();
                 NetDao.addContact(appContext, mName, username, new OkHttpUtils.OnCompleteListener<String>() {
                     @Override
                     public void onSuccess(String s) {
+                        Log.e(TAG,"成功");
                         if (s != null) {
                             Result result = ResultUtils.getResultFromJson(s, User.class);
                             if (result != null & result.isRetMsg()) {
                                 User u = (User) result.getRetData();
-                                userDao.saveUser(u);
-                                saveAppContact(u);
-                                broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
+                                if (u!=null){
+                                    Log.e(TAG,"好友信息写入到数据库");
+                                    saveAppContact(u);
+
+                                    broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
+                                }else {
+                                    Log.e(TAG,"user为空");
+                                }
+
+                            }else {
+                                Log.e(TAG,"请求失败，已经是好友");
                             }
+                        }else {
+                            Log.e(TAG,"s为空");
                         }
                     }
 
                     @Override
                     public void onError(String error) {
-
+                            Log.e(TAG,"error"+error);
                     }
                 });
             }
@@ -712,8 +702,7 @@ public class SuperWeChatHelper {
             userDao.deleteContact(username);
             inviteMessgeDao.deleteMessage(username);
 
-            appContactList.remove(username);
-            superWeChatModel.delteAppContact(username);
+            SuperWeChatHelper.getInstance().delAppContact(username);
 
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
 
@@ -764,6 +753,10 @@ public class SuperWeChatHelper {
             // your request was refused
             Log.d(username, username + " refused to your request");
         }
+    }
+
+    public void delAppContact(String username) {
+        userDao.deleteAppContact(username);
     }
 
     /**

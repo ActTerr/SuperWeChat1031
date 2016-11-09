@@ -21,6 +21,7 @@ import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
@@ -119,7 +120,7 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
             holder.motioned.setVisibility(View.GONE);
         }else {
             EaseUserUtils.setAppUserAvatar(getContext(), username, holder.avatar);
-            EaseUserUtils.setUserNick(username, holder.name);
+            EaseUserUtils.setAppUserNick(username, holder.name);
             holder.motioned.setVisibility(View.GONE);
         }
 

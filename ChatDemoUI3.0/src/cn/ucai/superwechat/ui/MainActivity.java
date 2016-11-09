@@ -358,12 +358,12 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
             public void onReceive(Context context, Intent intent) {
                 updateUnreadLabel();
                 updateUnreadAddressLable();
-//                if (currentTabIndex == 0) {
-                    //refresh conversation list
+                if (currentTabIndex == 0) {
+//                    refresh conversation list
                     if (conversationListFragment != null) {
                         conversationListFragment.refresh();
-//                    }
-//                } else if (currentTabIndex == 1) {
+                    }
+                } else if (currentTabIndex == 1) {
                     if (contactListFragment != null) {
                         contactListFragment.refresh();
                     }
@@ -393,11 +393,12 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
     @Override
     public void onPageSelected(int position) {
-         setButtonVisible(position);
-        currentTabIndex=position;
-        tabHost.setChecked(position);
+        setButtonVisible(position);
         setTitleText(position);
+
+        tabHost.setChecked(position);
         layoutViewpager.setCurrentItem(position);
+        currentTabIndex=position;
         //setTitleText(position);
     }
 
@@ -426,8 +427,9 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     public void onCheckedChange(int checkedPosition, boolean byUser) {
         setButtonVisible(checkedPosition);
         setTitleText(checkedPosition);
-        currentTabIndex=checkedPosition;
+
         layoutViewpager.setCurrentItem(checkedPosition, false);
+        currentTabIndex=checkedPosition;
     }
 
     @OnClick(R.id.iv_title_right)
@@ -563,6 +565,12 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         if (goBack){
             tabHost.setChecked(0);
         }
+        boolean BackFromAddContact=getIntent().getBooleanExtra("addContact",false);
+        if (BackFromAddContact){
+            tabHost.setChecked(1);
+        }
+
+
         // unregister this event listener when this activity enters the
         // background
         SuperWeChatHelper sdkHelper = SuperWeChatHelper.getInstance();
@@ -688,6 +696,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         boolean goBack=intent.getBooleanExtra("goback",false);
         if (goBack){
             tabHost.setChecked(0);
+        }
+        boolean BackFromAddContact=intent.getBooleanExtra("addContact",false);
+        if (BackFromAddContact){
+            tabHost.setChecked(1);
         }
 
     }

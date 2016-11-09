@@ -48,9 +48,11 @@ public class FriendProfileActivity extends BaseActivity {
         u = (User) getIntent().getSerializableExtra("user");
         if (u == null) {
             finish();
+            return;
         }
         initView();
     }
+
 
     private void initView() {
         titleBtn.setVisibility(View.GONE);
@@ -68,7 +70,10 @@ public class FriendProfileActivity extends BaseActivity {
     }
 
     private void setUserInfo() {
-        Log.e(TAG, u.toString());
+        if (u!=null){
+            Log.e(TAG, u.toString());
+        }
+
         EaseUserUtils.setAppUserAvatar(this, u.getMUserName(), userAvatar);
         EaseUserUtils.setAppUserNick(u.getMUserNick(), username);
         EaseUserUtils.setAppUserNameWithInfo(u.getMUserName(), wechatNumber);
@@ -92,5 +97,10 @@ public class FriendProfileActivity extends BaseActivity {
             case R.id.btn_video:
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

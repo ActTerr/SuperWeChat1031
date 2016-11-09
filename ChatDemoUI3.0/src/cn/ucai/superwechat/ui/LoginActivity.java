@@ -24,18 +24,18 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
-
 import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.SuperWeChatHelper;
@@ -52,11 +52,12 @@ import cn.ucai.superwechat.utils.ResultUtils;
 
 /**
  * Login screen
- *
  */
 public class LoginActivity extends BaseActivity {
     private static final String TAG = "LoginActivity";
     public static final int REQUEST_CODE_SETNICK = 1;
+    @BindView(R.id.title_btn)
+    Button titleBtn;
     private EditText usernameEditText;
     private EditText passwordEditText;
 
@@ -67,6 +68,7 @@ public class LoginActivity extends BaseActivity {
     String currentPassword;
     ProgressDialog pd;
     Activity mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,8 @@ public class LoginActivity extends BaseActivity {
         }
         setContentView(R.layout.login);
         ButterKnife.bind(this);
-        mContext=this;
+        titleBtn.setVisibility(View.GONE);
+        mContext = this;
         usernameEditText = (EditText) findViewById(R.id.username);
         passwordEditText = (EditText) findViewById(R.id.password);
 
@@ -198,9 +201,6 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -209,7 +209,7 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.btn_login, R.id.btn_goRegister,R.id.iv_back})
+    @OnClick({R.id.btn_login, R.id.btn_goRegister, R.id.iv_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
@@ -227,23 +227,23 @@ public class LoginActivity extends BaseActivity {
 
     private void loginAppServer() {
 
-        NetDao.UserLogin(this, currentUsername,  MD5.getMessageDigest(currentPassword), new OkHttpUtils.OnCompleteListener<String>() {
+        NetDao.UserLogin(this, currentUsername, MD5.getMessageDigest(currentPassword), new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
-                if(s!=null){
+                if (s != null) {
                     Result result = ResultUtils.getResultFromJson(s, User.class);
-                    if(result!=null && result.isRetMsg()){
+                    if (result != null && result.isRetMsg()) {
                         User user = (User) result.getRetData();
-                        if(user!=null) {
+                        if (user != null) {
                             UserDao dao = new UserDao(mContext);
                             dao.saveAppContact(user);
                             loginSuccess();
                         }
-                    }else{
+                    } else {
                         pd.dismiss();
-                        L.e(TAG,"login fail,"+result);
+                        L.e(TAG, "login fail," + result);
                     }
-                }else{
+                } else {
                     pd.dismiss();
                 }
             }
@@ -284,7 +284,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        pd.dismiss();
+        //pd.dismiss();
     }
 
     @Override

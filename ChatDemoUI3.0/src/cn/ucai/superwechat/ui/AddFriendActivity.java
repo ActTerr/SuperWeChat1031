@@ -1,6 +1,7 @@
 package cn.ucai.superwechat.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,7 +78,9 @@ public class AddFriendActivity extends BaseActivity {
                             progressDialog.dismiss();
                             String s1 = getResources().getString(R.string.send_successful);
                             Toast.makeText(getApplicationContext(), s1, Toast.LENGTH_LONG).show();
-
+                            Intent intent = new Intent(AddFriendActivity.this, MainActivity.class);
+                            intent.putExtra("addContact",true);
+                            startActivity(intent);
                         }
                     });
                 } catch (final Exception e) {

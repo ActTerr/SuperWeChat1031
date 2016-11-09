@@ -226,6 +226,9 @@ public class ContactListFragment extends EaseContactListFragment {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+        if (getUserVisibleHint()==false) {
+            return true;
+        }
 		if (item.getItemId() == R.id.delete_contact) {
 			try {
                 // delete contact
@@ -265,17 +268,17 @@ public class ContactListFragment extends EaseContactListFragment {
 						public void run() {
 							pd.dismiss();
 							contactList.remove(tobeDeleteUser);
-							contactListLayout.refresh();
+                            contactListLayout.refresh();
 
                             String mName=EMClient.getInstance().getCurrentUser();
                             NetDao.deleteContact(mContext, mName,tobeDeleteUser.getUsername(), new OkHttpUtils.OnCompleteListener<Result>() {
                                 @Override
                                 public void onSuccess(Result result) {
-                                    if(result!=null&&result.isRetMsg()==true){
-
-                                        SuperWeChatModel.delteAppContact(tobeDeleteUser.getUsername());
+                                    if(result!=null&&result.isRetMsg()){
+                                        SuperWeChatHelper.getInstance().delAppContact(tobeDeleteUser.getUsername());
 
                                         CommonUtils.showShortToast("删除好友成功");
+
                                     }
                                 }
 

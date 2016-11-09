@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,7 +37,6 @@ import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.dao.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.utils.CommonUtils;
-import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MD5;
 import cn.ucai.superwechat.utils.MFGT;
 
@@ -59,6 +59,8 @@ public class RegisterActivity extends BaseActivity {
     EditText etPassword;
     @BindView(R.id.confirm_password)
     EditText etConfirmPassword;
+    @BindView(R.id.title_btn)
+    Button titleBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +68,10 @@ public class RegisterActivity extends BaseActivity {
 
         setContentView(R.layout.register);
         ButterKnife.bind(this);
-        mContext=this;
+        mContext = this;
+        titleBtn.setVisibility(View.GONE);
 
     }
-
 
 
     private void registerAppServer() {
@@ -168,7 +170,7 @@ public class RegisterActivity extends BaseActivity {
                 break;
             case R.id.btn_onRegister:
                 userName = etUsername.getText().toString().trim();
-                Log.e("main",userName);
+                Log.e("main", userName);
                 pwd = etPassword.getText().toString().trim();
                 confirm_pwd = etConfirmPassword.getText().toString().trim();
                 nick = etUsernick.getText().toString().trim();

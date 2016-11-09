@@ -31,6 +31,7 @@ import cn.ucai.superwechat.db.SuperWeChatManager;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.InviteMessage;
 import cn.ucai.superwechat.utils.CommonUtils;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.ResultUtils;
 
 import android.app.Activity;
@@ -136,7 +137,6 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 			// Date(msg.getTime())));
 			if (msg.getStatus() == InviteMessage.InviteMesageStatus.BEAGREED) {
 
-				SuperWeChatHelper.getInstance().saveAddContact(username);
 
 				holder.status.setVisibility(View.INVISIBLE);
 				holder.reason.setText(str1);
@@ -243,8 +243,11 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 							buttonAgree.setText(str2);
 							buttonAgree.setBackgroundDrawable(null);
 							buttonAgree.setEnabled(false);
-							
-							buttonRefuse.setVisibility(View.INVISIBLE);
+							buttonAgree.setVisibility(View.GONE);
+							buttonRefuse.setVisibility(View.VISIBLE);
+							buttonRefuse.setText(str2);
+							buttonRefuse.setBackgroundDrawable(null);
+							L.e("acceptInvitation","acceptInvitation..2....");
 						}
 					});
 				} catch (final Exception e) {
