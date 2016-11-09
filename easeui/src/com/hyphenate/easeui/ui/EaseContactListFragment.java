@@ -38,6 +38,7 @@ import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.widget.EaseContactList;
 import com.hyphenate.exceptions.HyphenateException;
@@ -56,20 +57,20 @@ import java.util.Map.Entry;
  */
 public class EaseContactListFragment extends EaseBaseFragment {
     private static final String TAG = "EaseContactListFragment";
-    protected List<EaseUser> contactList;
+    protected List<User> contactList;
     protected ListView listView;
     protected boolean hidden;
     protected ImageButton clearSearch;
     protected EditText query;
     protected Handler handler = new Handler();
-    protected EaseUser toBeProcessUser;
+    protected User toBeProcessUser;
     protected String toBeProcessUsername;
     protected ImageView Avatar;
     protected EaseContactList contactListLayout;
     protected boolean isConflict;
     protected FrameLayout contentContainer;
     
-    private Map<String, EaseUser> contactsMap;
+    private Map<String, User> contactsMap;
 
     
     @Override
@@ -101,7 +102,7 @@ public class EaseContactListFragment extends EaseBaseFragment {
     protected void setUpView() {
         EMClient.getInstance().addConnectionListener(connectionListener);
         
-        contactList = new ArrayList<EaseUser>();
+        contactList = new ArrayList<User>();
         getContactList();
         //init list
         contactListLayout.init(contactList);
@@ -236,10 +237,10 @@ public class EaseContactListFragment extends EaseBaseFragment {
             }
         }
         synchronized (this.contactsMap) {
-            Iterator<Entry<String, EaseUser>> iterator = contactsMap.entrySet().iterator();
+            Iterator<Entry<String, User>> iterator = contactsMap.entrySet().iterator();
             List<String> blackList = EMClient.getInstance().contactManager().getBlackListUsernames();
             while (iterator.hasNext()) {
-                Entry<String, EaseUser> entry = iterator.next();
+                Entry<String, User> entry = iterator.next();
                 // to make it compatible with data in previous version, you can remove this check if this is new app
                 if (!entry.getKey().equals("item_new_friends")
                         && !entry.getKey().equals("item_groups")
@@ -247,8 +248,8 @@ public class EaseContactListFragment extends EaseBaseFragment {
                         && !entry.getKey().equals("item_robots")){
                     if(!blackList.contains(entry.getKey())){
                         //filter out users in blacklist
-                        EaseUser user = entry.getValue();
-                        EaseCommonUtils.setUserInitialLetter(user);
+                        User user = entry.getValue();
+                        EaseCommonUtils.setUserAppInitialLetter(user);
                         contactList.add(user);
                     }
                 }
@@ -256,12 +257,12 @@ public class EaseContactListFragment extends EaseBaseFragment {
         }
 
         // sorting
-        Collections.sort(contactList, new Comparator<EaseUser>() {
+        Collections.sort(contactList, new Comparator<User>() {
 
             @Override
-            public int compare(EaseUser lhs, EaseUser rhs) {
+            public int compare(User lhs, User rhs) {
                 if(lhs.getInitialLetter().equals(rhs.getInitialLetter())){
-                    return lhs.getNick().compareTo(rhs.getNick());
+                    return lhs.getMUserNick().compareTo(rhs.getMUserNick());
                 }else{
                     if("#".equals(lhs.getInitialLetter())){
                         return 1;
@@ -319,7 +320,7 @@ public class EaseContactListFragment extends EaseBaseFragment {
      * set contacts map, key is the hyphenate id
      * @param contactsMap
      */
-    public void setContactsMap(Map<String, EaseUser> contactsMap){
+    public void setContactsMap(Map<String, User> contactsMap){
         this.contactsMap = contactsMap;
     }
     
