@@ -148,6 +148,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         // runtime permission for android 6.0, just require all permissions here for simple
         requestPermissions();
         contactListFragment = new ContactListFragment();
+        conversationListFragment = new ConversationListFragment();
         initView();
 
         //umeng api
@@ -164,7 +165,6 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         inviteMessgeDao = new InviteMessgeDao(this);
         UserDao userDao = new UserDao(this);
 
-        conversationListFragment = new ConversationListFragment();
 //        personalFragment = new PersonalCenterFragment();
 //        fragments = new Fragment[]{conversationListFragment, contactListFragment, personalFragment};
 //
@@ -244,10 +244,8 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
                         MFGT.gotoUserAddContact(mContext);
                         break;
                     case 2:
-                        ivTitleRight.setVisibility(View.GONE);
                         break;
                     case 3:
-                        ivTitleRight.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -361,12 +359,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
                 updateUnreadLabel();
                 updateUnreadAddressLable();
 //                if (currentTabIndex == 0) {
-//                    //refresh conversation list
-//                    if (conversationListFragment != null) {
-//                        conversationListFragment.refresh();
+                    //refresh conversation list
+                    if (conversationListFragment != null) {
+                        conversationListFragment.refresh();
 //                    }
-//                } else
-                    if (currentTabIndex == 1) {
+//                } else if (currentTabIndex == 1) {
                     if (contactListFragment != null) {
                         contactListFragment.refresh();
                     }
@@ -396,8 +393,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 
     @Override
     public void onPageSelected(int position) {
+         setButtonVisible(position);
         currentTabIndex=position;
         tabHost.setChecked(position);
+        setTitleText(position);
         layoutViewpager.setCurrentItem(position);
         //setTitleText(position);
     }
@@ -406,9 +405,27 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     public void onPageScrollStateChanged(int state) {
 
     }
+    public void setButtonVisible(int position){
+        switch (position){
+            case 0:
+                ivTitleRight.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                ivTitleRight.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                ivTitleRight.setVisibility(View.GONE);
+                break;
+            case 3:
+                ivTitleRight.setVisibility(View.GONE);
+                break;
+        }
 
+    }
     @Override
     public void onCheckedChange(int checkedPosition, boolean byUser) {
+        setButtonVisible(checkedPosition);
+        setTitleText(checkedPosition);
         currentTabIndex=checkedPosition;
         layoutViewpager.setCurrentItem(checkedPosition, false);
     }
@@ -477,12 +494,13 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
      */
     public void updateUnreadLabel() {
         int count = getUnreadMsgCountTotal();
-        if (count > 0) {
-            unreadLabel.setText(String.valueOf(count));
-            unreadLabel.setVisibility(View.VISIBLE);
-        } else {
-            unreadLabel.setVisibility(View.INVISIBLE);
-        }
+        tabHost.setUnreadCount(0,count);
+//        if (count > 0) {
+//            unreadLabel.setText(String.valueOf(count));
+//            unreadLabel.setVisibility(View.VISIBLE);
+//        } else {
+//            unreadLabel.setVisibility(View.INVISIBLE);
+//        }
     }
 
     /**
@@ -541,12 +559,15 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 			updateUnreadLabel();
             updateUnreadAddressLable();
         }
-
+        boolean goBack=getIntent().getBooleanExtra("goback",false);
+        if (goBack){
+            tabHost.setChecked(0);
+        }
         // unregister this event listener when this activity enters the
         // background
         SuperWeChatHelper sdkHelper = SuperWeChatHelper.getInstance();
         sdkHelper.pushActivity(this);
-
+        
         EMClient.getInstance().chatManager().addMessageListener(messageListener);
     }
 
@@ -664,6 +685,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         } else if (intent.getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
             showAccountRemovedDialog();
         }
+        boolean goBack=intent.getBooleanExtra("goback",false);
+        if (goBack){
+            tabHost.setChecked(0);
+        }
+
     }
 
     /**

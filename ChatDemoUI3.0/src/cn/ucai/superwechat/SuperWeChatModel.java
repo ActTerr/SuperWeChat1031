@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class SuperWeChatModel {
     UserDao dao = null;
-    protected Context context = null;
+    protected static Context context = null;
     protected Map<Key,Object> valueCache = new HashMap<Key,Object>();
     
     public SuperWeChatModel(Context ctx){
@@ -285,9 +285,9 @@ public class SuperWeChatModel {
         return true;
     }
 
-    public void delteAppContact(String username) {
+    public static void delteAppContact(String username) {
         UserDao dao = new UserDao(context);
-        dao.deleteContact(username);
+        dao.deleteAppContact(username);
     }
 
     enum Key{

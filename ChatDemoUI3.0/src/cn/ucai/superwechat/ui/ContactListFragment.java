@@ -17,12 +17,18 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import com.hyphenate.chat.EMClient;
+
+import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.SuperWeChatHelper;
 
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatModel;
+import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.dao.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
+import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.widget.ContactItemView;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.domain.User;
@@ -33,6 +39,7 @@ import com.hyphenate.util.NetUtils;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -58,11 +65,11 @@ public class ContactListFragment extends EaseContactListFragment {
     private View loadingView;
     private ContactItemView applicationItem;
     private InviteMessgeDao inviteMessgeDao;
-
+    Context mContext;
     @Override
     protected void initView() {
         super.initView();
-
+        mContext=this.getActivity();
         View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.em_contacts_header, null);
         HeaderItemClickListener clickListener = new HeaderItemClickListener();
         applicationItem = (ContactItemView) headerView.findViewById(R.id.application_item);
@@ -259,6 +266,24 @@ public class ContactListFragment extends EaseContactListFragment {
 							pd.dismiss();
 							contactList.remove(tobeDeleteUser);
 							contactListLayout.refresh();
+
+                            String mName=EMClient.getInstance().getCurrentUser();
+                            NetDao.deleteContact(mContext, mName,tobeDeleteUser.getUsername(), new OkHttpUtils.OnCompleteListener<Result>() {
+                                @Override
+                                public void onSuccess(Result result) {
+                                    if(result!=null&&result.isRetMsg()==true){
+
+                                        SuperWeChatModel.delteAppContact(tobeDeleteUser.getUsername());
+
+                                        CommonUtils.showShortToast("删除好友成功");
+                                    }
+                                }
+
+                                @Override
+                                public void onError(String error) {
+
+                                }
+                            });
 
 
 						}
