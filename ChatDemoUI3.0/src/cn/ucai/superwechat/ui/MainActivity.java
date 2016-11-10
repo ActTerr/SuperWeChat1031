@@ -237,15 +237,16 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
                 setTitleText(position);
                 switch (position) {
                     case 0:
-
+                        MFGT.gotoGroupCreated(mContext);
                         break;
-
                     case 1:
                         MFGT.gotoUserAddContact(mContext);
                         break;
                     case 2:
+
                         break;
                     case 3:
+
                         break;
                 }
             }

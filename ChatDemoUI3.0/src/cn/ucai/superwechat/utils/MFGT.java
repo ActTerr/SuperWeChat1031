@@ -10,7 +10,9 @@ import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.ui.AddContactActivity;
 import cn.ucai.superwechat.ui.AddFriendActivity;
 import cn.ucai.superwechat.ui.FriendProfileActivity;
+import cn.ucai.superwechat.ui.GroupPickContactsActivity;
 import cn.ucai.superwechat.ui.LoginActivity;
+import cn.ucai.superwechat.ui.NewGroupActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
 /**
  * Created by mac-yk on 2016/11/1.
@@ -52,6 +54,9 @@ public class MFGT {
         intent.putExtra("name",username);
         intent.setClass(context,AddFriendActivity.class);
         startActivity(context, intent);
+    }
+    public static void gotoGroupCreated(Activity context){
+        startActivity(context, NewGroupActivity.class);
     }
 
 }

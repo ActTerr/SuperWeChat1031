@@ -367,5 +367,10 @@ public class ContactListFragment extends EaseContactListFragment {
         }
         
     }
-	
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpView();
+    }
 }
