@@ -569,6 +569,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         if (BackFromAddContact){
             tabHost.setChecked(1);
         }
+        boolean BackFromConversation=getIntent().getBooleanExtra("conversation",false);
+        if (BackFromConversation){
+            tabHost.setChecked(1);
+        }
 
 
         // unregister this event listener when this activity enters the
@@ -699,6 +703,10 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         }
         boolean BackFromAddContact=intent.getBooleanExtra("addContact",false);
         if (BackFromAddContact){
+            tabHost.setChecked(1);
+        }
+        boolean BackFromConversation=intent.getBooleanExtra("conversation",false);
+        if (BackFromConversation){
             tabHost.setChecked(1);
         }
 

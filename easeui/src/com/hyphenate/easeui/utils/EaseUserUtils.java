@@ -79,9 +79,6 @@ public class EaseUserUtils {
         }
     }
 
-    public static void setUserInitialLetter(User user) {
-
-    }
 
     public static void setCurrentUserName( TextView wechatNumber) {
         if(wechatNumber != null){
@@ -163,4 +160,7 @@ public class EaseUserUtils {
     }
 
 
+    public static void setUserInitialLetter(User user) {
+        EaseCommonUtils.setUserAppInitialLetter(user);
+    }
 }

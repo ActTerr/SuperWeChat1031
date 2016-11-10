@@ -2,6 +2,7 @@ package cn.ucai.superwechat.ui;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -81,7 +82,6 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
      * if it is chatBot 
      */
     private boolean isRobot;
-    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -102,10 +102,13 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 
             @Override
             public void onClick(View v) {
-                if (EasyUtils.isSingleActivity(getActivity())) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                }
+//                if (EasyUtils.isSingleActivity(getActivity())) {
+//                    Intent intent = new Intent(getActivity(), MainActivity.class);
+//                    startActivity(intent);
+//                }
+                Intent intent=new Intent();
+                intent.setClass(getActivity(),MainActivity.class).putExtra("conversation",true);
+                startActivity(intent);
                 onBackPressed();
             }
         });

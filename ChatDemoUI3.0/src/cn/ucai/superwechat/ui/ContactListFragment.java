@@ -113,12 +113,13 @@ public class ContactListFragment extends EaseContactListFragment {
             
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), AddContactActivity.class));
+                startActivity(new Intent(getActivity(), AddContactActivity.class));
                 NetUtils.hasDataConnection(getActivity());
+
             }
         });
         //titleBar.setBackground(R.color.black);
-        titleBar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        titleBar.setBackgroundColor(getResources().getColor(R.color.black));
         titleBar.setVisibility(View.GONE);
         //设置联系人数据  
         Map<String, User> m = SuperWeChatHelper.getInstance().getAppContactList();
