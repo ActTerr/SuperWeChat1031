@@ -276,6 +276,8 @@ public class EaseConversationListFragment extends EaseBaseFragment{
         if (!hidden) {
             refresh();
         }
+        query.getText().clear();
+        hideSoftKeyboard();
     }
     
     @Override

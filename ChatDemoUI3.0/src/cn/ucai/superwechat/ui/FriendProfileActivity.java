@@ -95,6 +95,8 @@ public class FriendProfileActivity extends BaseActivity {
                 startActivity(new Intent(this, ChatActivity.class).putExtra("userId", u.getMUserName()));
                 break;
             case R.id.btn_video:
+                startActivity(new Intent(this,VideoCallActivity.class).
+                        putExtra("username",u.getMUserName()).putExtra("isComingCall",false));
                 break;
         }
     }
