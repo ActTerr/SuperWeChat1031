@@ -456,11 +456,11 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ease_voice_unread.png"
     },
     {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable-hdpi-v4/ee_12.png",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ee_12.png"
-    },
-    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable-hdpi-v4/ee_15.png",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ee_15.png"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable-hdpi-v4/ee_12.png",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable-hdpi/ee_12.png"
     }
 ]

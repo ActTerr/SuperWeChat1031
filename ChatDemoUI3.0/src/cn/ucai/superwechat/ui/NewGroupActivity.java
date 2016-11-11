@@ -13,6 +13,7 @@
  */
 package cn.ucai.superwechat.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -40,6 +41,8 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMGroupManager.EMGroupOptions;
 import com.hyphenate.chat.EMGroupManager.EMGroupStyle;
+//import com.hyphenate.easeui.domain.Group;
+
 import com.hyphenate.easeui.utils.EaseImageUtils;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
 import com.hyphenate.exceptions.HyphenateException;
@@ -49,7 +52,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.acl.Group;
+import com.hyphenate.easeui.domain.Group;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +62,9 @@ import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.dao.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.L;
+import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
 
 public class NewGroupActivity extends BaseActivity {
@@ -71,7 +76,7 @@ public class NewGroupActivity extends BaseActivity {
     private CheckBox publibCheckBox;
     private CheckBox memberCheckbox;
     private TextView secondTextView;
-    Context context;
+    Activity context;
     private static final int REQUESTCODE_PICK = 1;
     private static final int REQUESTCODE_CUTTING = 2;
     private static final int REQUESTCODE_PICK_CONTACT = 3;
@@ -184,17 +189,19 @@ public class NewGroupActivity extends BaseActivity {
 
     }
 
-    private void createGroup(EMGroup emGroup) {
+    private void createGroup(final EMGroup emGroup) {
         if (file==null) {
             NetDao.createGroup(context, emGroup, new OkHttpUtils.OnCompleteListener<String>() {
                 @Override
                 public void onSuccess(String s) {
                 afterCreateGroup(s);
+                    addGroupMembers(emGroup);
                 }
 
                 @Override
                 public void onError(String error) {
-
+                    progressDialog.dismiss();
+                    CommonUtils.showShortToast("创建群组失败");
                 }
             });
         }else {
@@ -202,14 +209,39 @@ public class NewGroupActivity extends BaseActivity {
                 @Override
                 public void onSuccess(String s) {
                     afterCreateGroup(s);
+                    addGroupMembers(emGroup);
                 }
 
                 @Override
                 public void onError(String error) {
-
+                    progressDialog.dismiss();
+                    CommonUtils.showShortToast("创建群组失败");
                 }
             });
         }
+    }
+
+    private void addGroupMembers(final EMGroup emGroup) {
+        NetDao.addGroupMembers(context, emGroup, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                if (s!=null){
+                    Result result=ResultUtils.getResultFromJson(s,Group.class);
+                    if (result!=null&result.isRetMsg()){
+                        Group group= (Group) result.getRetData();
+                        Log.e(TAG,"group="+group);
+                        progressDialog.dismiss();
+                        MFGT.finish(context);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                    progressDialog.dismiss();
+                    CommonUtils.showShortToast("创建群组失败");
+            }
+        });
     }
 
     private void afterCreateGroup(String s) {
@@ -227,7 +259,7 @@ public class NewGroupActivity extends BaseActivity {
     public void createSuccess() {
         runOnUiThread(new Runnable() {
             public void run() {
-                progressDialog.dismiss();
+
                 setResult(RESULT_OK);
                 finish();
             }
@@ -287,6 +319,7 @@ public class NewGroupActivity extends BaseActivity {
             groupAvatar.setImageDrawable(drawable);
             // uploadUserAvatar(Bitmap2Bytes(photo));
             file=saveBitmapFile(picdata);
+            Log.e(TAG,"file="+file);
         }
     }
 

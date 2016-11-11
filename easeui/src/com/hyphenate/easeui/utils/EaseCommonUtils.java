@@ -240,4 +240,6 @@ public class EaseCommonUtils {
         }
         user.setInitialLetter(letter);
         }
+
+
 }

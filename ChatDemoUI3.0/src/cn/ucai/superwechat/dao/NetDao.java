@@ -133,5 +133,19 @@ public class NetDao {
                 .targetClass(String.class)
                 .execute(listener);
     }
+    public static void addGroupMembers(Context context,EMGroup emGroup,OkHttpUtils.OnCompleteListener<String> listener){
+        String members="";
+        for(String m:emGroup.getMembers()){
+            if (!m.equals(EMClient.getInstance().getCurrentUser())){
+                members+=m+",";
+            }
+        }
+        OkHttpUtils<String> utils=new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_DELETE_GROUP_MEMBERS)
+                .addParam(I.Member.USER_NAME,members)
+                .addParam(I.Member.GROUP_HX_ID,emGroup.getGroupId())
+                .targetClass(String.class)
+                .execute(listener);
+    }
 
 }
