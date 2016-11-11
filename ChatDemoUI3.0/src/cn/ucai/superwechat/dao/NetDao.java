@@ -148,4 +148,13 @@ public class NetDao {
                 .execute(listener);
     }
 
+    public static void addGroupMember(Context context,String userName,String hxid,OkHttpUtils.OnCompleteListener<String> listener){
+        OkHttpUtils<String> utils=new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_DELETE_GROUP_MEMBER)
+                .addParam(I.Member.USER_NAME,userName)
+                .addParam(I.Member.GROUP_HX_ID,hxid)
+                .targetClass(String.class)
+                .execute(listener);
+    }
+
 }
