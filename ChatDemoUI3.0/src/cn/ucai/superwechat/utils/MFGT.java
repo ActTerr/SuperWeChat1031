@@ -11,6 +11,7 @@ import cn.ucai.superwechat.ui.AddContactActivity;
 import cn.ucai.superwechat.ui.AddFriendActivity;
 import cn.ucai.superwechat.ui.FriendProfileActivity;
 import cn.ucai.superwechat.ui.GroupPickContactsActivity;
+import cn.ucai.superwechat.ui.GroupsActivity;
 import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.NewGroupActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
@@ -35,6 +36,10 @@ public class MFGT {
         context.startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
     }
+    public static void startActivity2(Context context, Intent intent){
+        context.startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+    }
     public static void gotoRegister(Activity context){
         startActivity(context, RegisterActivity.class);
     }
@@ -58,5 +63,9 @@ public class MFGT {
     public static void gotoGroupCreated(Activity context){
         startActivity(context, NewGroupActivity.class);
     }
-
+    public static void gotoGroups(Activity activity){
+        Intent intent = new Intent();
+        intent.setClass(activity, GroupsActivity.class);
+        startActivity2(activity,intent);
+    }
 }

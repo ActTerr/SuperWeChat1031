@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     private ContactListFragment contactListFragment;
     private Fragment[] fragments;
     private int index;
-    private int currentTabIndex;
+    public static int currentTabIndex;
     // user logged into another device
     public boolean isConflict = false;
     // user account was removed
@@ -706,10 +706,12 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         if (BackFromAddContact){
             tabHost.setChecked(1);
         }
-        boolean BackFromConversation=intent.getBooleanExtra("conversation",false);
-        if (BackFromConversation){
-            tabHost.setChecked(1);
+        currentTabIndex =intent.getIntExtra("conversation",5);
+        if (currentTabIndex!=5){
+            tabHost.setChecked(currentTabIndex);
         }
+
+
 
     }
 

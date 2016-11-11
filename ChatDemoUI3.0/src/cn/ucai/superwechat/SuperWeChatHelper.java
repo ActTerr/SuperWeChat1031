@@ -82,7 +82,6 @@ public class SuperWeChatHelper {
 
     public void saveStrangerAppContact(User user) {
         strangerContactList.put(user.getMUserName(), user);
-        superWeChatModel.saveAppContact(user);
     }
 
 

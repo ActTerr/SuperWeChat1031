@@ -116,10 +116,16 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 //                    Intent intent = new Intent(getActivity(), MainActivity.class);
 //                    startActivity(intent);
 //                }
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),MainActivity.class).putExtra("conversation",true);
-                startActivity(intent);
+                if (MainActivity.currentTabIndex==1&&chatType==EaseConstant.CHATTYPE_GROUP){
+                   MFGT.gotoGroups(mContext);
+                }else {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), MainActivity.class).putExtra("conversation", MainActivity.currentTabIndex);
+                    startActivity(intent);
+
+                }
                 onBackPressed();
+
             }
         });
         ((EaseEmojiconMenu)inputMenu.getEmojiconMenu()).addEmojiconGroup(EmojiconExampleGroupData.getData());
