@@ -80,6 +80,10 @@ public class SuperWeChatHelper {
         superWeChatModel.saveAppContact(user);
     }
 
+    public void saveStrangerAppContact(User user) {
+        strangerContactList.put(user.getMUserName(), user);
+        superWeChatModel.saveAppContact(user);
+    }
 
 
     /**
@@ -106,6 +110,8 @@ public class SuperWeChatHelper {
     private Map<String, EaseUser> contactList;
 
     private Map<String, User> appContactList;
+
+    private Map<String, User> strangerContactList=new HashMap<>();
 
     private Map<String, RobotUser> robotList;
 

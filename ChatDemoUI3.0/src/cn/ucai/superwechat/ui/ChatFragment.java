@@ -10,8 +10,10 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,11 +33,16 @@ import com.hyphenate.chat.EMTextMessageBody;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.dao.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.domain.EmojiconExampleGroupData;
 import cn.ucai.superwechat.domain.RobotUser;
 import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.utils.ResultUtils;
 import cn.ucai.superwechat.widget.ChatRowVoiceCall;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.easeui.ui.EaseChatFragment.EaseChatFragmentHelper;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
@@ -82,9 +89,12 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
      * if it is chatBot 
      */
     private boolean isRobot;
+    Activity mContext ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContext=this.getActivity();
         return super.onCreateView(inflater, container, savedInstanceState);
+
     }
 
     @Override
@@ -261,6 +271,30 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 //        Intent intent = new Intent(getActivity(), UserProfileActivity.class);
 //        intent.putExtra("username", username);
 //        startActivity(intent);
+        if (!SuperWeChatHelper.getInstance().getAppContactList().containsKey(username)){
+            NetDao.findUser(this.getActivity(), username, new OkHttpUtils.OnCompleteListener<String>() {
+                @Override
+                public void onSuccess(String s) {
+                    if (s!=null){
+                        Result result= ResultUtils.getResultFromJson(s, User.class);
+                        if (result!=null&&result.isRetMsg()){
+                            User user= (User) result.getRetData();
+                            SuperWeChatHelper.getInstance().saveStrangerAppContact(user);
+                            MFGT.gotoFriendProfile(mContext,user);
+                        }else {
+                            Log.e(TAG,"result为空或者返回false");
+                        }
+                    }else {
+                        Log.e(TAG,"s为空");
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    Log.e(TAG,"error"+error);
+                }
+            });
+        }
         MFGT.gotoFriendProfile(this.getActivity(),SuperWeChatHelper.getInstance().getAppContactList().get(username));
     }
     
