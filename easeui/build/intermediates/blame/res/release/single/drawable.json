@@ -16,12 +16,12 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable/ease_msg_state_failed_resend.xml"
     },
     {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable/ease_recording_hint_bg.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable/ease_recording_hint_bg.xml"
-    },
-    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable/ease_btn_cancel_normal_shape.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable/ease_btn_cancel_normal_shape.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable/ease_recording_hint_bg.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/drawable/ease_recording_hint_bg.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/drawable/ease_btn_blue_selector.xml",

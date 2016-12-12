@@ -1,7 +1,6 @@
 package com.hyphenate.easeui.utils;
 
 import android.content.Context;
-import android.nfc.Tag;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.ImageView;
@@ -181,5 +180,12 @@ public class EaseUserUtils {
         Glide.with(context).load(Group.getAvatar(hxid)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.default_hd_avatar).into(imageView);
     }
 
+    }
+
+    public static String getLivePhoto(String hxid) {
+        String URL = "http://101.251.196.90:8000/SuperWeChatServerV2.0/downloadAvatar?name_or_hxid=";
+        String end = "&avatarType=chatroom_icon&m_avatar_suffix=.jpg";
+        String path=URL+hxid+end;
+        return path;
     }
 }

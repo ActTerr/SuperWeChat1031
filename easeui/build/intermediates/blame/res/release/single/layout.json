@@ -40,12 +40,12 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_layout_chat_primary_menu.xml"
     },
     {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_widget_emojicon.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_emojicon.xml"
-    },
-    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_row_sent_message.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_message.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_widget_emojicon.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_emojicon.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_row_contact.xml",
@@ -60,16 +60,16 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_expression_gridview.xml"
     },
     {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_fragment_conversation_list.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_conversation_list.xml"
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_row_received_voice_call.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_voice_call.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_row_received_location.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_location.xml"
     },
     {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_row_received_voice_call.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_voice_call.xml"
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_fragment_conversation_list.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_conversation_list.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/release/layout/ease_chat_message_list.xml",
