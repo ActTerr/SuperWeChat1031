@@ -156,7 +156,6 @@
     <string name="str_main_me">我</string>
     <string name="newFriend">新的朋友</string>
     
-      <string name="app_name">LiveDemo</string>
 
   <!-- Strings related to login -->
   <string name="prompt_email">用户名</string>
