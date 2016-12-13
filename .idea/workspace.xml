@@ -2,30 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af7543f5-b69e-4ddd-9f02-9bbf93e8e6c6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-large-v4/values-large-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-ru-rRU/values-ru-rRU.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v11/values-v11.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-zh-rCN/values-zh-rCN.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru-rRU/values-ru-rRU.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-large-v4/values-large-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-ru-rRU/values-ru-rRU.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v11/values-v11.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-zh-rCN/values-zh-rCN.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageDebugResources/merged.dir/values-large-v4/values-large-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageDebugResources/merged.dir/values-ru-rRU/values-ru-rRU.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageDebugResources/merged.dir/values-v11/values-v11.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageDebugResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageDebugResources/merged.dir/values/values.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/domain/Group.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/domain/Locationner.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/domain/Member.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/classes/release/com/hyphenate/easeui/adapter/EaseContactAdapter$MyFilter.class" afterPath="$PROJECT_DIR$/easeui/build/intermediates/classes/release/com/hyphenate/easeui/adapter/EaseContactAdapter$MyFilter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/classes/release/com/hyphenate/easeui/adapter/EaseContactAdapter.class" afterPath="$PROJECT_DIR$/easeui/build/intermediates/classes/release/com/hyphenate/easeui/adapter/EaseContactAdapter.class" />
@@ -63,22 +42,21 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/easeui/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/outputs/aar/EaseUI-debug.aar" afterPath="$PROJECT_DIR$/easeui/build/outputs/aar/EaseUI-debug.aar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/outputs/aar/EaseUI-release.aar" afterPath="$PROJECT_DIR$/easeui/build/outputs/aar/EaseUI-release.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/SuperWeChatHelper.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/SuperWeChatHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/dao/NetDao.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/dao/NetDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/ContactListFragment.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/ContactListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/MainActivity.java" afterPath="$PROJECT_DIR$/ChatDemoUI3.0/src/cn/ucai/superwechat/ui/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/EaseUI.iml" afterPath="$PROJECT_DIR$/easeui/EaseUI.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/generated/source/r/androidTest/debug/com/hyphenate/easeui/R.java" afterPath="$PROJECT_DIR$/easeui/build/generated/source/r/androidTest/debug/com/hyphenate/easeui/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/generated/source/r/androidTest/debug/com/hyphenate/easeui/test/R.java" afterPath="$PROJECT_DIR$/easeui/build/generated/source/r/androidTest/debug/com/hyphenate/easeui/test/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/generated/source/r/debug/com/hyphenate/easeui/R.java" afterPath="$PROJECT_DIR$/easeui/build/generated/source/r/debug/com/hyphenate/easeui/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/debug/single/drawable.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/debug/single/drawable.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/debug/single/layout.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/debug/single/layout.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/release/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/release/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/release/single/drawable.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/release/single/drawable.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/release/single/layout.json" afterPath="$PROJECT_DIR$/easeui/build/intermediates/blame/res/release/single/layout.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/bundles/debug/R.txt" afterPath="$PROJECT_DIR$/easeui/build/intermediates/bundles/debug/R.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/bundles/debug/res/layout/ease_fragment_conversation_list.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/bundles/debug/res/layout/ease_fragment_conversation_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/bundles/debug/res/layout/ease_widget_title_bar.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/bundles/debug/res/layout/ease_widget_title_bar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/res/layout/ease_fragment_conversation_list.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/res/layout/ease_fragment_conversation_list.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/res/layout/ease_widget_title_bar.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/bundles/release/res/layout/ease_widget_title_bar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/easeui/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
@@ -91,7 +69,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageReleaseResources/merger.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/incremental/packageReleaseResources/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/androidTest/debug/layout/ease_fragment_conversation_list.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/androidTest/debug/layout/ease_fragment_conversation_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_title_bar.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_title_bar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_conversation_list.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_conversation_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/debug/layout/ease_widget_title_bar.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/debug/layout/ease_widget_title_bar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/release/layout/ease_fragment_conversation_list.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/release/layout/ease_fragment_conversation_list.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/release/layout/ease_widget_title_bar.xml" afterPath="$PROJECT_DIR$/easeui/build/intermediates/res/merged/release/layout/ease_widget_title_bar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/build/intermediates/symbols/androidTest/debug/R.txt" afterPath="$PROJECT_DIR$/easeui/build/intermediates/symbols/androidTest/debug/R.txt" />
@@ -102,6 +82,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/domain/User.java" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/domain/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/ui/EaseContactListFragment.java" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/ui/EaseContactListFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/ui/EaseConversationListFragment.java" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/ui/EaseConversationListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/utils/EaseCommonUtils.java" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/utils/EaseCommonUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/utils/EaseUserUtils.java" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/utils/EaseUserUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/widget/EaseContactList.java" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/widget/EaseContactList.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/widget/chatrow/EaseChatRow.java" afterPath="$PROJECT_DIR$/easeui/src/com/hyphenate/easeui/widget/chatrow/EaseChatRow.java" />
@@ -164,10 +145,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane />
       </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -178,7 +160,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
