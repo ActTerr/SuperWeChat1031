@@ -46,8 +46,8 @@
     </RelativeLayout>
 	
     <include android:id="@+id/search_bar_view" layout="@layout/em_search_bar_with_padding"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"

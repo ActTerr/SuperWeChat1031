@@ -188,4 +188,7 @@ public class EaseUserUtils {
         String path=URL+hxid+end;
         return path;
     }
+
+    public static void setCover(Context context, String cover, ImageView imageView) {
+    }
 }

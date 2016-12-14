@@ -25,9 +25,9 @@
     <color name="tab_def_selected_color">#ffff7800</color>
     <color name="tab_top_title_normal_color">#ffffffff</color>
     <color name="tab_top_title_selected_color">#ffff7800</color>
-    <color name="common_bottom_bar_normal_bg">#323232</color>
+    <!--<color name="common_bottom_bar_normal_bg">#323232</color>-->
     
-  <color name="common_bottom_bar_selected_bg">#fff</color>
+  <!--<color name="common_bottom_bar_selected_bg">#fff</color>-->
   <color name="common_botton_bar_text_noral">#5E5E5E</color>
   <color name="placeholder">#ddd</color>
   <color name="author_background">#66000000</color>
