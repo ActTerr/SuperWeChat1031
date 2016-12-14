@@ -19,11 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.live.data.TestDataRepository;
-import cn.ucai.superwechat.live.data.model.LiveRoom;
-import cn.ucai.superwechat.live.data.model.LiveSettings;
-import cn.ucai.superwechat.utils.Log2FileUtil;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
@@ -40,6 +35,11 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.live.data.TestDataRepository;
+import cn.ucai.superwechat.live.data.model.LiveRoom;
+import cn.ucai.superwechat.live.data.model.LiveSettings;
+import cn.ucai.superwechat.live.utils.Log2FileUtil;
 
 public class StartLiveActivity extends LiveBaseActivity
     implements UEasyStreaming.UStreamingStateListener {
@@ -85,9 +85,12 @@ public class StartLiveActivity extends LiveBaseActivity
   @Override protected void onActivityCreate(@Nullable Bundle savedInstanceState) {
     setContentView(R.layout.activity_start_live);
     ButterKnife.bind(this);
-
-    liveId = TestDataRepository.getLiveRoomId(EMClient.getInstance().getCurrentUser());
-    chatroomId = TestDataRepository.getChatRoomId(EMClient.getInstance().getCurrentUser());
+    LiveRoom liveRoom = getIntent().getParcelableExtra("liveroom");
+    if (liveRoom==null){
+      finish();
+    }
+    liveId = liveRoom.getId();
+    chatroomId = liveRoom.getChatroomId();
     anchorId = EMClient.getInstance().getCurrentUser();
     usernameView.setText(anchorId);
     initEnv();
@@ -231,7 +234,7 @@ public class StartLiveActivity extends LiveBaseActivity
     List<LiveRoom> liveRoomList = TestDataRepository.getLiveRoomList();
     for (LiveRoom liveRoom : liveRoomList) {
       if (liveRoom.getId().equals(liveId)) {
-        coverImage.setImageResource(liveRoom.getCover());
+        coverImage.setImageResource(Integer.parseInt(liveRoom.getCover()));
       }
     }
     View view = liveEndLayout.inflate();

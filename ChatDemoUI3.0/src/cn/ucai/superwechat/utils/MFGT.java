@@ -42,6 +42,9 @@ public class MFGT {
         context.startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
     }
+    public static void startActivity3(Context context, Intent intent){
+        context.startActivity(intent);
+    }
     public static void gotoRegister(Activity context){
         startActivity(context, RegisterActivity.class);
     }
@@ -74,13 +77,13 @@ public class MFGT {
         Intent intent=new Intent();
         intent.setClass(context,StartLiveActivity.class);
         intent.putExtra("liveroom",liveRoom);
-        startActivity(context, intent);
+        startActivity3(context, intent);
     }
     public static void gotoLiveDetails(Context context, LiveRoom liveRoom){
         Intent intent=new Intent();
         intent.setClass(context,LiveDetailsActivity.class);
         intent.putExtra("liveroom",liveRoom);
-        startActivity(context, intent);
+        startActivity3(context, intent);
     }
 
 

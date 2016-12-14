@@ -16,8 +16,10 @@ package cn.ucai.superwechat.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +84,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		title.setText(getResources().getString(R.string.chat_room));
 		chatRoomList = new ArrayList<EMChatRoom>();
 		rooms = new ArrayList<EMChatRoom>();
-
+		listView.setLayoutManager(new LinearLayoutManager(this));
 //		View footView = getLayoutInflater().inflate(R.layout.em_listview_footer_view, listView, false);
 //        footLoadingLayout = (LinearLayout) footView.findViewById(R.id.loading_layout);
 //        footLoadingPB = (ProgressBar)footView.findViewById(R.id.loading_bar);
@@ -417,9 +419,11 @@ public class PublicChatRoomsActivity extends BaseActivity {
 			} else {
 				LiveViewHolder hv = (LiveViewHolder) holder;
 				final LiveRoom liveRoom = liveRoomList.get(position);
+				Log.e("main",liveRoom.toString());
 				hv.anchor.setText(liveRoom.getName());
 				hv.audienceNum.setText(liveRoom.getAudienceNum() + "人");
-				EaseUserUtils.setCover(context,liveRoom.getCover(),((LiveViewHolder) holder).imageView);
+				String cover=LiveRoom.getCoverString(liveRoom.getCover());
+				EaseUserUtils.setCover(context,cover,((LiveViewHolder) holder).imageView);
 				hv.itemView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -427,7 +431,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
 						if(liveRoom.getAnchorId().equals(username)){
 							MFGT.startLive(context,liveRoom);
 						}else{
-							MFGT.gotoLiveDetails( context,liveRoom);
+							MFGT.gotoLiveDetails(context,liveRoom);
 						}
 					}
 				});

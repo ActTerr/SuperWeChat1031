@@ -481,6 +481,10 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".ui.AddFriendActivity"/>
         <activity android:name=".ui.FriendProfileActivity"/>
+        <activity android:name=".live.ui.activity.LiveDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".live.ui.activity.StartLiveActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

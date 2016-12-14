@@ -17,7 +17,6 @@ import com.hyphenate.easeui.domain.Group;
 import com.hyphenate.easeui.domain.User;
 
 public class EaseUserUtils {
-
     static EaseUserProfileProvider userProvider;
 
     static {
@@ -189,6 +188,18 @@ public class EaseUserUtils {
         return path;
     }
 
-    public static void setCover(Context context, String cover, ImageView imageView) {
+    public static void setCover(Context context, String path, ImageView imageView) {
+        if(path != null){
+            try {
+                int avatarResId = Integer.parseInt(path);
+                Glide.with(context).load(avatarResId).into(imageView);
+            } catch (Exception e) {
+                //use default avatar
+                Glide.with(context).load(path).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.default_hd_avatar).into(imageView);
+            }
+        }else{
+            Glide.with(context).load(R.drawable.default_hd_avatar).into(imageView);
+        }
+
     }
 }

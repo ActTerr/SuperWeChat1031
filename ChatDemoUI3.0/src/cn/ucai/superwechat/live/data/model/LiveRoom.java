@@ -96,4 +96,8 @@ public class LiveRoom implements Parcelable {
             return new LiveRoom[size];
         }
     };
+    public static String getCoverString(String cover){
+        String path = "http://101.251.196.90:8000/SuperWeChatServerV2.0/downloadAvatar?name_or_hxid="+cover+"&avatarType=chatroom_icon&m_avatar_suffix=.jpg&updatetime=";
+        return path;
+    }
 }

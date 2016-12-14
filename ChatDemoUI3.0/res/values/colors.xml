@@ -32,7 +32,7 @@
   <color name="placeholder">#ddd</color>
   <color name="author_background">#66000000</color>
 
-  <color name="common_bg">#E6E6EB</color>
+  <!--<color name="common_bg">#E6E6EB</color>-->
   <color name="tab_indicator">#323232</color>
 
   <color name="common_red">#FF4C4C</color>
