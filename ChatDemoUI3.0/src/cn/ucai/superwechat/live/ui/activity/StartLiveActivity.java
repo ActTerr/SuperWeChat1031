@@ -30,6 +30,8 @@ import com.ucloud.live.UEasyStreaming;
 import com.ucloud.live.UStreamingProfile;
 import com.ucloud.live.widget.UAspectFrameLayout;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -95,6 +97,7 @@ public class StartLiveActivity extends LiveBaseActivity
     };
 
     //203138620012364216
+    long startTime;
     @Override
     protected void onActivityCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_start_live);
@@ -109,6 +112,7 @@ public class StartLiveActivity extends LiveBaseActivity
         usernameView.setText(anchorId);
         EaseUserUtils.setAppUserAvatar(this,EaseUserUtils.getCurrentAppUserInfo().getMUserName(),ivLiveAvatar);
         initEnv();
+        startTime=System.currentTimeMillis();
     }
 
     public void initEnv() {
@@ -262,10 +266,18 @@ public class StartLiveActivity extends LiveBaseActivity
 //            }
 //        }
         close.setEnabled(false);
+        long endTime = System.currentTimeMillis();
+        long liveTime=endTime-startTime;
+        SimpleDateFormat dateformat=new SimpleDateFormat("HH:mm:ss");
+        String time=dateformat.format(new Date(liveTime));
         View view = liveEndLayout.inflate();
+
+        TextView livetiem= (TextView) view.findViewById(R.id.live_time);
         Button closeConfirmBtn = (Button) view.findViewById(R.id.live_close_confirm);
         TextView usernameView = (TextView) view.findViewById(R.id.tv_username);
         ImageView imageView= (ImageView) view.findViewById(R.id.close_avatar);
+        
+        livetiem.setText(time);
         EaseUserUtils.setCurrentAppUserAvatar(this,imageView);
         usernameView.setText(EMClient.getInstance().getCurrentUser());
         closeConfirmBtn.setOnClickListener(new View.OnClickListener() {
