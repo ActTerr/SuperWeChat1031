@@ -18,6 +18,7 @@
         android:layout_height="60dp"
         android:src="@drawable/ease_default_avatar"
         android:layout_marginTop="100dp"
+        android:id="@+id/close_avatar"
         />
     <TextView
         android:id="@+id/tv_username"

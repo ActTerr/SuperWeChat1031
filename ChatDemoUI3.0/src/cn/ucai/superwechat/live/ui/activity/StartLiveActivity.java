@@ -30,7 +30,6 @@ import com.ucloud.live.UEasyStreaming;
 import com.ucloud.live.UStreamingProfile;
 import com.ucloud.live.widget.UAspectFrameLayout;
 
-import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -65,7 +64,8 @@ public class StartLiveActivity extends LiveBaseActivity
     ImageButton lightSwitch;
     @BindView(R.id.img_bt_switch_voice)
     ImageButton voiceSwitch;
-
+    @BindView(R.id.img_bt_close)
+    Button close;
     protected UEasyStreaming mEasyStreaming;
     protected String rtmpPushStreamDomain = "publish3.cdn.ucloud.com.cn";
     public static final int MSG_UPDATE_COUNTDOWN = 1;
@@ -255,15 +255,18 @@ public class StartLiveActivity extends LiveBaseActivity
     private void showConfirmCloseLayout() {
         //显示封面
         coverImage.setVisibility(View.VISIBLE);
-        List<LiveRoom> liveRoomList = TestDataRepository.getLiveRoomList();
-        for (LiveRoom liveRoom : liveRoomList) {
-            if (liveRoom.getId().equals(liveId)) {
-                coverImage.setImageResource(Integer.parseInt(liveRoom.getCover()));
-            }
-        }
+//        List<LiveRoom> liveRoomList = TestDataRepository.getLiveRoomList();
+//        for (LiveRoom liveRoom : liveRoomList) {
+//            if (liveRoom.getId().equals(liveId)) {
+//                coverImage.setImageResource(Integer.parseInt(LiveRoom.getCoverString(liveRoom.getCover())));
+//            }
+//        }
+        close.setEnabled(false);
         View view = liveEndLayout.inflate();
         Button closeConfirmBtn = (Button) view.findViewById(R.id.live_close_confirm);
         TextView usernameView = (TextView) view.findViewById(R.id.tv_username);
+        ImageView imageView= (ImageView) view.findViewById(R.id.close_avatar);
+        EaseUserUtils.setCurrentAppUserAvatar(this,imageView);
         usernameView.setText(EMClient.getInstance().getCurrentUser());
         closeConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
