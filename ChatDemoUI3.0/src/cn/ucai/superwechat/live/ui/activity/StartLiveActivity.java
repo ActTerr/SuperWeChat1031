@@ -112,7 +112,7 @@ public class StartLiveActivity extends LiveBaseActivity
         usernameView.setText(anchorId);
         EaseUserUtils.setAppUserAvatar(this,EaseUserUtils.getCurrentAppUserInfo().getMUserName(),ivLiveAvatar);
         initEnv();
-        startTime=System.currentTimeMillis();
+
     }
 
     public void initEnv() {
@@ -152,6 +152,7 @@ public class StartLiveActivity extends LiveBaseActivity
                 Toast.makeText(this, event.toString(), Toast.LENGTH_LONG).show();
                 break;
             case UEasyStreaming.State.START_RECORDING:
+                startTime=System.currentTimeMillis();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -170,6 +171,7 @@ public class StartLiveActivity extends LiveBaseActivity
                         }
                     }
                 }).start();
+
                 break;
         }
     }
@@ -276,7 +278,7 @@ public class StartLiveActivity extends LiveBaseActivity
         Button closeConfirmBtn = (Button) view.findViewById(R.id.live_close_confirm);
         TextView usernameView = (TextView) view.findViewById(R.id.tv_username);
         ImageView imageView= (ImageView) view.findViewById(R.id.close_avatar);
-        
+
         livetiem.setText(time);
         EaseUserUtils.setCurrentAppUserAvatar(this,imageView);
         usernameView.setText(EMClient.getInstance().getCurrentUser());
