@@ -16,7 +16,7 @@ package cn.ucai.superwechat.ui;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
@@ -84,7 +84,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		title.setText(getResources().getString(R.string.chat_room));
 		chatRoomList = new ArrayList<EMChatRoom>();
 		rooms = new ArrayList<EMChatRoom>();
-		listView.setLayoutManager(new LinearLayoutManager(this));
+		listView.setLayoutManager(new GridLayoutManager(this,2));
 //		View footView = getLayoutInflater().inflate(R.layout.em_listview_footer_view, listView, false);
 //        footLoadingLayout = (LinearLayout) footView.findViewById(R.id.loading_layout);
 //        footLoadingPB = (ProgressBar)footView.findViewById(R.id.loading_bar);

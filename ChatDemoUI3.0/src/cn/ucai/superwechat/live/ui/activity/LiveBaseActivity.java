@@ -26,6 +26,7 @@ import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMTextMessageBody;
+import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 
@@ -38,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.Constant;
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.live.data.TestAvatarRepository;
 import cn.ucai.superwechat.live.ui.widget.BarrageLayout;
@@ -201,6 +203,11 @@ public abstract class LiveBaseActivity extends BaseActivity {
         EMMessage message = EMMessage.createReceiveMessage(EMMessage.Type.TXT);
         message.setReceipt(chatroomId);
         message.setFrom(participant);
+        try {
+          String nick=message.getStringAttribute(I.User.NICK);
+        } catch (HyphenateException e) {
+          e.printStackTrace();
+        }
         EMTextMessageBody textMessageBody = new EMTextMessageBody("来了");
         message.addBody(textMessageBody);
         message.setChatType(EMMessage.ChatType.ChatRoom);
@@ -306,6 +313,7 @@ public abstract class LiveBaseActivity extends BaseActivity {
               barrageLayout.addBarrage(content, EMClient.getInstance().getCurrentUser());
             }
             message.setChatType(EMMessage.ChatType.ChatRoom);
+            message.setAttribute(I.User.NICK, EaseUserUtils.getCurrentAppUserInfo().getMUserNick());
             EMClient.getInstance().chatManager().sendMessage(message);
             message.setMessageStatusCallback(new EMCallBack() {
               @Override public void onSuccess() {
