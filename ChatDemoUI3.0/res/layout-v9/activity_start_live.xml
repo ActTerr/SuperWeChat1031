@@ -5,7 +5,6 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.easemob.livedemo.ui.activity.StartLiveActivity"
     >
 
   <com.ucloud.live.widget.UAspectFrameLayout
@@ -31,10 +30,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         >
-      <com.hyphenate.easeui.widget.EaseImageView
+      <ImageView
+          android:id="@+id/iv_live_avatar"
           android:layout_width="30dp"
           android:layout_height="30dp"
-          app:ease_shape_type="round"
+
           android:src="@drawable/ease_default_avatar"
           />
 
