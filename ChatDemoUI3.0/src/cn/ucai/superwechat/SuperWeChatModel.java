@@ -2,9 +2,6 @@ package cn.ucai.superwechat;
 
 import android.content.Context;
 
-import cn.ucai.superwechat.db.UserDao;
-import cn.ucai.superwechat.domain.RobotUser;
-import cn.ucai.superwechat.utils.PreferenceManager;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
@@ -13,6 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.ucai.superwechat.db.UserDao;
+import cn.ucai.superwechat.domain.RobotUser;
+import cn.ucai.superwechat.live.data.model.Gift;
+import cn.ucai.superwechat.utils.PreferenceManager;
 
 public class SuperWeChatModel {
     UserDao dao = null;
@@ -288,6 +290,19 @@ public class SuperWeChatModel {
     public static void delteAppContact(String username) {
         UserDao dao = new UserDao(context);
         dao.deleteAppContact(username);
+    }
+
+    public void saveGift(Gift gift) {
+    }
+
+    public void saveGiftList(ArrayList<Gift> mList) {
+        UserDao dao = new UserDao(context);
+        dao.saveAppGiftList(mList);
+    }
+
+    public Map<String,Gift> getGiftList() {
+        UserDao dao = new UserDao(context);
+        return dao.getGiftList();
     }
 
     enum Key{

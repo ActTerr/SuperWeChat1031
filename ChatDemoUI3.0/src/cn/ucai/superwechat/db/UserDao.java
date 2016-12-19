@@ -13,15 +13,17 @@
  */
 package cn.ucai.superwechat.db;
 
+import android.content.Context;
+
+import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
-
 import cn.ucai.superwechat.domain.RobotUser;
-import com.hyphenate.easeui.domain.EaseUser;
-import com.hyphenate.easeui.domain.User;
+import cn.ucai.superwechat.live.data.model.Gift;
 
 public class UserDao {
 	public static final String TABLE_NAME = "uers";
@@ -46,6 +48,12 @@ public class UserDao {
 	public static final String USER_COLUMN_AVATAR_SUFFIX="m_user_avatar_suffix";
 	public static final String USER_COLUMN_AVATAR_TYPE="m_user_avatar_type";
 	public static final String USER_COLUMN_AVATAR_LASTUPDATE_TIME="m_user_lastupdate";
+
+	public static final String GIFT_TABLE_NAME="t_gift";
+	public static final String GIFT_NAME="name";
+	public static final String GIFT_AVATAR="avatar";
+	public static final String GIFT_ID="id";
+	public static final String GIFT_PRICE="price";
 	public boolean saveUser(User user){
 		return SuperWeChatManager.getInstance().saveUser(user);
 	}
@@ -132,5 +140,13 @@ public class UserDao {
 
 	public void saveAppContactList(ArrayList<User> mList) {
 		SuperWeChatManager.getInstance().saveAppContactList(mList);
+	}
+
+	public void saveAppGiftList(ArrayList<Gift> mList) {
+		SuperWeChatManager.getInstance().saveAppGiftList(mList);
+	}
+
+	public Map<String,Gift> getGiftList() {
+		return SuperWeChatManager.getInstance().getGiftList();
 	}
 }

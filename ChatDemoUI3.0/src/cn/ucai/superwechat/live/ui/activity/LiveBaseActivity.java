@@ -389,7 +389,18 @@ public abstract class LiveBaseActivity extends BaseActivity {
     }
   }
 
-
+  private void showGiftDetailsDialog() {
+    final GiftDetailsDialog dialog =GiftDetailsDialog.newInstance();
+//    dialog.setUserDetailsDialogListener(
+//            new RoomUserDetailsDialog.UserDetailsDialogListener() {
+//              @Override public void onMentionClick(String username) {
+//                dialog.dismiss();
+//                messageView.getInputView().setText("@" + username + " ");
+//                showInputView();
+//              }
+//            });
+    dialog.show(getSupportFragmentManager(), "RoomUserDetailsDialog");
+  }
   private void showUserDetailsDialog(String username) {
     final RoomUserDetailsDialog dialog =
         RoomUserDetailsDialog.newInstance(username);
@@ -469,6 +480,9 @@ public abstract class LiveBaseActivity extends BaseActivity {
   }
 
   @OnClick(R.id.present_image) void onPresentImageClick() {
+    showGiftDetailsDialog();
+  }
+  private void sendGiftMessage(){
     EMMessage message = EMMessage.createSendMessage(EMMessage.Type.CMD);
     message.setReceipt(chatroomId);
     EMCmdMessageBody cmdMessageBody = new EMCmdMessageBody(Constant.CMD_GIFT);

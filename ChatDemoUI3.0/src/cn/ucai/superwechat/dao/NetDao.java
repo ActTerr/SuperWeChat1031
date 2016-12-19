@@ -1,7 +1,6 @@
 package cn.ucai.superwechat.dao;
 
 import android.content.Context;
-import android.os.Message;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
@@ -156,5 +155,10 @@ public class NetDao {
                 .targetClass(String.class)
                 .execute(listener);
     }
-
+    public static void addGiftList(Context context,OkHttpUtils.OnCompleteListener<String> listener){
+        OkHttpUtils<String> utils=new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_ALL_GIFTS)
+                .targetClass(String.class)
+                .execute(listener);
+    }
 }

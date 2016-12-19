@@ -63,6 +63,13 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_SUFFIX + " TEXT, "
 			+ cn.ucai.superwechat.db.UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME + " TEXT);";
 
+	private static final String USER_GIFT_CREATE = "CREATE TABLE "
+			+ UserDao.GIFT_NAME + " ("
+			+ UserDao.GIFT_ID+ " TEXT PRIMARY KEY, "
+			+ UserDao.GIFT_NAME + " TEXT, "
+			+ UserDao.GIFT_PRICE + " INTEGER, "
+			+ UserDao.GIFT_AVATAR+ " TEXT);";
+
 	private DbOpenHelper(Context context) {
 		super(context, getUserDatabaseName(), null, DATABASE_VERSION);
 	}
@@ -85,6 +92,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 		db.execSQL(CREATE_PREF_TABLE);
 		db.execSQL(ROBOT_TABLE_CREATE);
 		db.execSQL(USER_TABLE_CREATE);
+		db.execSQL(USER_GIFT_CREATE);
 	}
 
 	@Override
