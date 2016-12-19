@@ -29,14 +29,16 @@ public class GiftAdapter extends RecyclerView.Adapter {
     List<Gift> mList;
     Context context;
 
-
+    View.OnClickListener mListener;
     public GiftAdapter(List<Gift> mlist, Context context) {
         this.mList = new ArrayList<>();
         this.mList.addAll(mlist);
         this.context = context;
     }
 
-
+    public void setListener( View.OnClickListener listener){
+        mListener=listener;
+    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder = new BoutiqueViewHolder(LayoutInflater.from(context).inflate(R.layout.item_gift, parent, false));
@@ -54,6 +56,7 @@ public class GiftAdapter extends RecyclerView.Adapter {
         bvh.tvGoodsName.setText(boutique.getGname());
         bvh.layoutGoods.setTag(boutique);
         bvh.ivGoodsThumb.setImageResource(setGiftImage(boutique.getId()));
+        bvh.layoutGoods.setOnClickListener(mListener);
     }
 
 

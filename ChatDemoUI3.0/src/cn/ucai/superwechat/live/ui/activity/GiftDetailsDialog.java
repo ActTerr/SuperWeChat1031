@@ -48,7 +48,6 @@ public class GiftDetailsDialog extends DialogFragment {
     GridLayoutManager layoutManager;
     ArrayList<Gift> mList = new ArrayList<>();
     GiftAdapter adapter;
-
     public static GiftDetailsDialog newInstance() {
         GiftDetailsDialog dialog = new GiftDetailsDialog();
         return dialog;
@@ -116,14 +115,9 @@ public class GiftDetailsDialog extends DialogFragment {
     void onFollowBtnClick() {
     }
 
-    private UserDetailsDialogListener dialogListener;
 
-    public void setUserDetailsDialogListener(UserDetailsDialogListener dialogListener) {
-        this.dialogListener = dialogListener;
-    }
-
-    interface UserDetailsDialogListener {
-        void onMentionClick(String username);
+    public void setUserDetailsDialogListener( View.OnClickListener Listener) {
+        adapter.setListener(Listener);
     }
 
 
