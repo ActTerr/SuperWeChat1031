@@ -539,7 +539,7 @@ public class SuperWeChatManager {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Map<String, Gift> gifts = new Hashtable<String, Gift>();
         if (db.isOpen()) {
-            Cursor cursor = db.rawQuery("select * from " + UserDao.TABLE_NAME /* + " desc" */, null);
+            Cursor cursor = db.rawQuery("select * from " + UserDao.GIFT_TABLE_NAME + " order by "+UserDao.GIFT_PRICE , null);
             while (cursor.moveToNext()) {
                 String username = cursor.getString(cursor.getColumnIndex(UserDao.GIFT_NAME));
                 Gift gift=new Gift();

@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hyphenate.easeui.utils.EaseUserUtils;
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,11 +49,11 @@ public class GiftAdapter extends RecyclerView.Adapter {
         Gift boutique = mList.get(position);
         BoutiqueViewHolder bvh = (BoutiqueViewHolder) holder;
 //            ImageLoader.context,bvh.bouIv,boutique.getGurl());
-        EaseUserUtils.setAvatarforPath(context,boutique.getGurl(),bvh.ivGoodsThumb);
+//        EaseUserUtils.setAvatarforPath(context,boutique.getGurl(),bvh.ivGoodsThumb);
         bvh.tvGoodsPrice.setText(boutique.getGprice());
         bvh.tvGoodsName.setText(boutique.getGname());
         bvh.layoutGoods.setTag(boutique);
-
+        bvh.ivGoodsThumb.setImageResource(setGiftImage(boutique.getId()));
     }
 
 
@@ -67,6 +67,12 @@ public class GiftAdapter extends RecyclerView.Adapter {
         if (mList != null) {
             mList.clear();
         }
+        Collections.sort(list, new Comparator<Gift>() {
+            @Override
+            public int compare(Gift lhs, Gift rhs) {
+                return lhs.getGprice()-rhs.getGprice();
+            }
+        });
         mList.addAll(list);
         notifyDataSetChanged();
     }
@@ -101,8 +107,9 @@ public class GiftAdapter extends RecyclerView.Adapter {
     }
     private int setGiftImage(int id){
         Context context = SuperWeChatApplication.getInstance().getApplicationContext();
-            String name = "hani_gift_"+id;
-            int resId = context.getResources().getIdentifier(name,"drawable",context.getPackageName());
+        String name = "hani_gift_"+id;
+        int resId = context.getResources().getIdentifier(name,"drawable",context.getPackageName());
         return resId;
     }
+
 }
