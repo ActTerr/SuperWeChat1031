@@ -153,7 +153,7 @@ public class SuperWeChatHelper {
     private LocalBroadcastManager broadcastManager;
 
     private boolean isGroupAndContactListenerRegisted;
-
+    private String change;
     private SuperWeChatHelper() {
     }
 
@@ -1443,5 +1443,11 @@ public class SuperWeChatHelper {
         ArrayList<Gift> mList = new ArrayList<>();
         mList.addAll(appGiftList.values());
         superWeChatModel.saveGiftList(mList);
+    }
+    public void setCurrentUserChange(String change){
+      superWeChatModel.setCurrentUserChange(change);
+    }
+    public String getCurrentUserChange(){
+       return superWeChatModel.getCurrentUsernchange();
     }
 }

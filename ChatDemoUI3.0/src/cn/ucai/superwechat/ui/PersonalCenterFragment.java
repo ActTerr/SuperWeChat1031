@@ -1,10 +1,7 @@
 package cn.ucai.superwechat.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.easemob.redpacketui.utils.RedPacketUtil;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 
@@ -23,10 +19,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.utils.MFGT;
 
-import static android.content.Context.MODE_PRIVATE;
 import static cn.ucai.superwechat.R.id.username;
 
 /**
@@ -73,7 +67,8 @@ public class PersonalCenterFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txt_package:
-                RedPacketUtil.startChangeActivity(mContext);
+                MFGT.gotoChange(getActivity());
+//                RedPacketUtil.startChangeActivity(mContext);
                 break;
             case R.id.txt_set:
                 MFGT.startActivity(mContext,SettingsActivity.class);

@@ -313,4 +313,11 @@ public class SuperWeChatModel {
         DisabledGroups,
         DisabledIds
     }
+    public void setCurrentUserChange(String change){
+        PreferenceManager.getInstance().setCurrentUserChange(change);
+    }
+    public String getCurrentUsernchange(){
+        return PreferenceManager.getInstance().getCurrentUserChange();
+    }
+
 }

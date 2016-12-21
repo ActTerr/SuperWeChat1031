@@ -485,6 +485,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".live.ui.activity.StartLiveActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".live.ui.activity.changeActivity"/>
     </application>
 
 </manifest>
