@@ -419,7 +419,6 @@ public class PublicChatRoomsActivity extends BaseActivity {
 			} else {
 				LiveViewHolder hv = (LiveViewHolder) holder;
 				final LiveRoom liveRoom = liveRoomList.get(position);
-				Log.e("main",liveRoom.toString());
 				hv.anchor.setText(liveRoom.getName());
 				hv.audienceNum.setText(liveRoom.getAudienceNum() + "人");
 				String cover=LiveRoom.getCoverString(liveRoom.getCover());

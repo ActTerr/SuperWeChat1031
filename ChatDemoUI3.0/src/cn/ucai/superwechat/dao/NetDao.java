@@ -173,8 +173,8 @@ public class NetDao {
         utils.setRequestUrl(I.REQUEST_GIVING_GIFT)
                 .addParam("anchorId",cid)
                 .addParam("uname",username)
-                .addParam("gid", String.valueOf(gid))
-                .addParam("gnum","1")
+                .addParam("giftId", String.valueOf(gid))
+                .addParam("giftNum","1")
                 .targetClass(String.class)
                 .execute(listener);
     }

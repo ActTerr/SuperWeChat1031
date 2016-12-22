@@ -547,7 +547,7 @@ public class SuperWeChatManager {
                 gift.setGname(username);
                 gift.setGprice(cursor.getInt(cursor.getColumnIndex(UserDao.GIFT_PRICE)));
                 gift.setGurl(cursor.getString(cursor.getColumnIndex(UserDao.GIFT_AVATAR)));
-
+                gift.setId(id);
 
                 gifts.put(id, gift);
             }

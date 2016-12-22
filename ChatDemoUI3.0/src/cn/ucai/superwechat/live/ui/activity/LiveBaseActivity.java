@@ -32,7 +32,6 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.exceptions.HyphenateException;
-import com.hyphenate.util.EMLog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,7 +74,7 @@ public abstract class LiveBaseActivity extends BaseActivity {
     PeriscopeLayout periscopeLayout;
     @BindView(R.id.bottom_bar)
     View bottomBar;
-
+    static  Context mContext;
     @BindView(R.id.barrage_layout)
     BarrageLayout barrageLayout;
     @BindView(R.id.horizontal_recycle_view)
@@ -84,7 +83,7 @@ public abstract class LiveBaseActivity extends BaseActivity {
     TextView audienceNumView;
     @BindView(R.id.new_messages_warn)
     ImageView newMsgNotifyImage;
-   GiftDetailsDialog dialog1;
+    GiftDetailsDialog dialog1;
     protected String anchorId;
 
     /**
@@ -109,7 +108,6 @@ public abstract class LiveBaseActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onActivityCreate(savedInstanceState);
-        Log.e("main", "LiveBaseActivity");
     }
 
     protected Handler handler = new Handler();
@@ -242,7 +240,7 @@ public abstract class LiveBaseActivity extends BaseActivity {
             @Override
             public void onChatRoomDestroyed(String roomId, String roomName) {
                 if (roomId.equals(chatroomId)) {
-                    EMLog.e(TAG, " room : " + roomId + " with room name : " + roomName + " was destroyed");
+//                    EMLog.e(TAG, " room : " + roomId + " with room name : " + roomName + " was destroyed");
                 }
             }
 
@@ -430,18 +428,12 @@ public abstract class LiveBaseActivity extends BaseActivity {
             newMsgNotifyImage.setVisibility(View.INVISIBLE);
         }
     }
-    View.OnClickListener mListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            int id = (int) v.getTag();
-            payGiftMessage(id);
-            dialog1.dismiss();
-        }
-    };
     private void showGiftDetailsDialog() {
+        Log.e("main","dialog instance");
         dialog1= GiftDetailsDialog.newInstance();
-        dialog1.setDetailsDialogListener(mListener);
+//        dialog1=new GiftDetailsDialog();
+
+
 //    dialog.setUserDetailsDialogListener(
 //            new RoomUserDetailsDialog.UserDetailsDialogListener() {
 //              @Override public void onMentionClick(String username) {
@@ -450,7 +442,22 @@ public abstract class LiveBaseActivity extends BaseActivity {
 //                showInputView();
 //              }
 //            });
-        dialog1.show(getSupportFragmentManager(), "RoomUserDetailsDialog");
+        dialog1.show(getSupportFragmentManager(), "GiftDetailsDialog");
+        setListener();
+    }
+
+    private void setListener() {
+        Log.e("main","将要设置监听");
+        dialog1.setDetailsDialogListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("main","礼品被点击");
+
+                int id = (int) v.getTag();
+                payGiftMessage(id);
+                dialog1.dismiss();
+            }
+        });
     }
 
     private void showUserDetailsDialog(String username) {
@@ -544,13 +551,13 @@ public abstract class LiveBaseActivity extends BaseActivity {
         showGiftDetailsDialog();
     }
 
-    private void payGiftMessage(final int id) {
+    public  void payGiftMessage(final int id) {
         int change = Integer.parseInt(SuperWeChatHelper.getInstance().getCurrentUserChange());
+        Log.e("main","金钱"+change);
         final Gift gift = SuperWeChatHelper.getInstance().getGiftList().get(id);
 
-
         if (change > gift.getGprice()) {
-
+            Log.e("main","发送礼物请求");
             NetDao.sendGift(this, EMClient.getInstance().getCurrentUser(), anchorId, id, new OkHttpUtils.OnCompleteListener<String>() {
                 @Override
                 public void onSuccess(String s) {
@@ -561,6 +568,8 @@ public abstract class LiveBaseActivity extends BaseActivity {
                             if (wallet != null) {
                                 if (SuperWeChatHelper.getInstance().getUserProfileManager().getTips()!=true){
                                     showdialog(gift,wallet);
+                                }else {
+                                    sendGiftMessage(gift.getId());
                                 }
 
                             } else {
@@ -573,7 +582,7 @@ public abstract class LiveBaseActivity extends BaseActivity {
 
                 @Override
                 public void onError(String error) {
-
+                    Log.e("main",error);
                 }
             });
         } else {

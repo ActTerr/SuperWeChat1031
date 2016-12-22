@@ -20,84 +20,16 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_commom_back_btn.xml"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_activity_baidumap.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_activity_baidumap.xml"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_contact_list.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_contact_list.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_activity_show_file.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_activity_show_file.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_file.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_file.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_location.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_location.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_switch_button.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_switch_button.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_emojicon_tab_bar.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_emojicon_tab_bar.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_title_bar.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_title_bar.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_chat.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_chat.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_expression.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_expression.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_activity_show_big_image.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_activity_show_big_image.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_search_bar_with_padding.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_search_bar_with_padding.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_file.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_file.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_emojicon.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_emojicon.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_picture.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_picture.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_video.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_video.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_layout_emojicon_menu.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_layout_emojicon_menu.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_voice_call.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_voice_call.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_contact_list.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_contact_list.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_chat_message_list.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_chat_message_list.xml"
-    },
-    {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_activity_baidumap.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_activity_baidumap.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_message.xml",
@@ -108,12 +40,20 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_picture.xml"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_file.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_file.xml"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_alert_dialog.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_alert_dialog.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_showvideo_activity.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_showvideo_activity.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_location.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_location.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_video_call.xml",
@@ -136,12 +76,28 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_chat_history.xml"
     },
     {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_conversation_list.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_conversation_list.xml"
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_switch_button.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_switch_button.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_emojicon_tab_bar.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_emojicon_tab_bar.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_chat_menu_item.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_chat_menu_item.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_conversation_list.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_conversation_list.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_title_bar.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_title_bar.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_chat.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_chat.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_expression_gridview.xml",
@@ -160,8 +116,20 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_bigexpression.xml"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_expression.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_expression.xml"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_video.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_video.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_activity_show_big_image.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_activity_show_big_image.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_search_bar_with_padding.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_search_bar_with_padding.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_scroll_tab_item.xml",
@@ -172,12 +140,40 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_conversation_item.xml"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_file.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_received_file.xml"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_chat_input_menu.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_chat_input_menu.xml"
     },
     {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_emojicon.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_emojicon.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_picture.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_picture.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_video.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_video.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_layout_emojicon_menu.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_layout_emojicon_menu.xml"
+    },
+    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_voice.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_voice.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_voice_call.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_row_sent_voice_call.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_contact_list.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_fragment_contact_list.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_sent_message.xml",
@@ -186,6 +182,10 @@
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_search_bar.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_search_bar.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_chat_message_list.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_chat_message_list.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_row_received_voice_call.xml",

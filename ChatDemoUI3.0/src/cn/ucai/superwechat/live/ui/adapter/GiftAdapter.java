@@ -16,7 +16,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.live.data.model.Gift;
@@ -25,20 +24,19 @@ import cn.ucai.superwechat.live.data.model.Gift;
  * Created by mac-yk on 2016/10/19.
  */
 
-public class GiftAdapter extends RecyclerView.Adapter{
+public class GiftAdapter extends RecyclerView.Adapter {
     List<Gift> mList;
     Context context;
 
-    View.OnClickListener mListener;
+    static View.OnClickListener mListener;
     public GiftAdapter(List<Gift> mlist, Context context) {
         this.mList = new ArrayList<>();
         this.mList.addAll(mlist);
         this.context = context;
     }
 
-    public void setListener( View.OnClickListener listener){
+    public static void setListener(View.OnClickListener listener){
         mListener=listener;
-        notifyDataSetChanged();
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,9 +53,9 @@ public class GiftAdapter extends RecyclerView.Adapter{
 //        EaseUserUtils.setAvatarforPath(context,boutique.getGurl(),bvh.ivGoodsThumb);
         bvh.tvGoodsPrice.setText(boutique.getGprice()+"");
         bvh.tvGoodsName.setText(boutique.getGname());
-        bvh.layoutGoods.setTag(boutique);
-        bvh.ivGoodsThumb.setImageResource(setGiftImage(boutique.getId()));
-        bvh.itemView.setOnClickListener(mListener);
+        bvh.layoutGoods.setTag(boutique.getId());
+        bvh.ivGoodsThumb.setImageResource(getGiftImageRes(String.valueOf(boutique.getId())));
+        bvh.layoutGoods.setOnClickListener(mListener);
     }
 
 
@@ -89,13 +87,13 @@ public class GiftAdapter extends RecyclerView.Adapter{
 
 
     class BoutiqueViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.ivGoodsThumb)
+        @BindView(R.id.ivGiftThumb)
         ImageView ivGoodsThumb;
-        @BindView(R.id.tvGoodsName)
+        @BindView(R.id.tvGiftName)
         TextView tvGoodsName;
-        @BindView(R.id.tvGoodsPrice)
+        @BindView(R.id.tvGiftPrice)
         TextView tvGoodsPrice;
-        @BindView(R.id.layout_goods)
+        @BindView(R.id.layout_gift)
         LinearLayout layoutGoods;
 
 
@@ -104,14 +102,14 @@ public class GiftAdapter extends RecyclerView.Adapter{
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick(R.id.layout_goods)
-        public void onGoodsItemClick() {
-            Gift bean = (Gift) layoutGoods.getTag();
-//            MFGT.gotoBoutiqueChildActivity(context, bean);
-        }
+//        @OnClick(R.id.layout_gift)
+//        public void onGoodsItemClick() {
+//            Gift bean = (Gift) layoutGoods.getTag();
+////            MFGT.gotoBoutiqueChildActivity(context, bean);
+//        }
 
     }
-    private int setGiftImage(int id){
+    private int getGiftImageRes(String id) {
         Context context = SuperWeChatApplication.getInstance().getApplicationContext();
         String name = "hani_gift_"+id;
         int resId = context.getResources().getIdentifier(name,"drawable",context.getPackageName());

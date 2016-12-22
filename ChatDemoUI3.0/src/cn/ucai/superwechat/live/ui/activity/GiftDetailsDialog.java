@@ -48,38 +48,50 @@ public class GiftDetailsDialog extends DialogFragment {
 
     GridLayoutManager layoutManager;
     ArrayList<Gift> mList = new ArrayList<>();
-    GiftAdapter adapter;
+    GiftAdapter  adapter;
     public static GiftDetailsDialog newInstance() {
         GiftDetailsDialog dialog = new GiftDetailsDialog();
         return dialog;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e("main","onCreate被执行");
+//        initView();
+//        loadGiftList();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.e("main","onCreateView被执行");
         View view = inflater.inflate(R.layout.gift_list, container, false);
         unbinder = ButterKnife.bind(this, view);
+//        initView();
+//        loadGiftList();
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.e("main","onActivityCreated");
         initView();
         loadGiftList();
     }
 
     private void initView() {
+        Log.e("main","dialog initView");
         layoutManager = new GridLayoutManager(getContext(), 4);
         ivGift.setLayoutManager(layoutManager);
-        adapter = new GiftAdapter(mList, getContext());
+        adapter=new GiftAdapter(mList,getContext());
         ivGift.setAdapter(adapter);
     }
 
     private void loadGiftList() {
-//        Map<String, Gift> giftList = SuperWeChatHelper.getInstance().getGiftList();
-        Map<String ,Gift> giftList=null;
+        Map<Integer, Gift> giftList = SuperWeChatHelper.getInstance().getGiftList();
         if (giftList != null && !giftList.isEmpty()) {
             ArrayList<Gift> gifts=new ArrayList<>();
             for(Gift gift:giftList.values()){
@@ -95,7 +107,6 @@ public class GiftDetailsDialog extends DialogFragment {
                         if (result != null && result.isRetMsg()) {
                             List<Gift> gifts = (List<Gift>) result.getRetData();
                             if (gifts != null && gifts.size() > 0) {
-                                Log.e("main",gifts.toString());
                                 adapter.initData(gifts);
                                 SuperWeChatHelper.getInstance().updateAppGiftList(gifts);
 
@@ -114,13 +125,13 @@ public class GiftDetailsDialog extends DialogFragment {
     }
 
 
-
     public void setDetailsDialogListener(View.OnClickListener Listener) {
-        if (Listener!=null&&adapter!=null){
-            adapter.setListener(Listener);
+        if (Listener!=null){
+            GiftAdapter.setListener(Listener);
         }
 
     }
+
 
 
     @Override
