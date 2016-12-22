@@ -292,6 +292,7 @@ public class StartLiveActivity extends LiveBaseActivity
 
     private void confirmClose() {
 
+
     }
 
     /**

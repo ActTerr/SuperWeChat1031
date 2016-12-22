@@ -535,20 +535,21 @@ public class SuperWeChatManager {
         }
     }
 
-    public Map<String,Gift> getGiftList() {
+    public Map<Integer,Gift> getGiftList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Map<String, Gift> gifts = new Hashtable<String, Gift>();
+        Map<Integer, Gift> gifts = new Hashtable<Integer, Gift>();
         if (db.isOpen()) {
-            Cursor cursor = db.rawQuery("select * from " + UserDao.GIFT_TABLE_NAME + " order by "+UserDao.GIFT_PRICE , null);
+            Cursor cursor = db.rawQuery("select * from " + UserDao.GIFT_TABLE_NAME , null);
             while (cursor.moveToNext()) {
+                int id=cursor.getInt(cursor.getColumnIndex(UserDao.GIFT_ID));
                 String username = cursor.getString(cursor.getColumnIndex(UserDao.GIFT_NAME));
                 Gift gift=new Gift();
                 gift.setGname(username);
                 gift.setGprice(cursor.getInt(cursor.getColumnIndex(UserDao.GIFT_PRICE)));
                 gift.setGurl(cursor.getString(cursor.getColumnIndex(UserDao.GIFT_AVATAR)));
-                gift.setId(cursor.getInt(cursor.getColumnIndex(UserDao.GIFT_ID)));
 
-                gifts.put(username, gift);
+
+                gifts.put(id, gift);
             }
             cursor.close();
         }

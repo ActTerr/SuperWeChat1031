@@ -25,7 +25,7 @@ import cn.ucai.superwechat.live.data.model.Gift;
  * Created by mac-yk on 2016/10/19.
  */
 
-public class GiftAdapter extends RecyclerView.Adapter {
+public class GiftAdapter extends RecyclerView.Adapter{
     List<Gift> mList;
     Context context;
 
@@ -38,6 +38,7 @@ public class GiftAdapter extends RecyclerView.Adapter {
 
     public void setListener( View.OnClickListener listener){
         mListener=listener;
+        notifyDataSetChanged();
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -52,11 +53,11 @@ public class GiftAdapter extends RecyclerView.Adapter {
         BoutiqueViewHolder bvh = (BoutiqueViewHolder) holder;
 //            ImageLoader.context,bvh.bouIv,boutique.getGurl());
 //        EaseUserUtils.setAvatarforPath(context,boutique.getGurl(),bvh.ivGoodsThumb);
-        bvh.tvGoodsPrice.setText(boutique.getGprice());
+        bvh.tvGoodsPrice.setText(boutique.getGprice()+"");
         bvh.tvGoodsName.setText(boutique.getGname());
         bvh.layoutGoods.setTag(boutique);
         bvh.ivGoodsThumb.setImageResource(setGiftImage(boutique.getId()));
-        bvh.layoutGoods.setOnClickListener(mListener);
+        bvh.itemView.setOnClickListener(mListener);
     }
 
 
@@ -66,7 +67,7 @@ public class GiftAdapter extends RecyclerView.Adapter {
     }
 
 
-    public void initData(ArrayList<Gift> list) {
+    public void initData(List<Gift> list) {
         if (mList != null) {
             mList.clear();
         }
@@ -84,6 +85,8 @@ public class GiftAdapter extends RecyclerView.Adapter {
         mList.addAll(list);
         notifyDataSetChanged();
     }
+
+
 
     class BoutiqueViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ivGoodsThumb)

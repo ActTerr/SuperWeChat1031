@@ -300,7 +300,7 @@ public class SuperWeChatModel {
         dao.saveAppGiftList(mList);
     }
 
-    public Map<String,Gift> getGiftList() {
+    public Map<Integer,Gift> getGiftList() {
         UserDao dao = new UserDao(context);
         return dao.getGiftList();
     }

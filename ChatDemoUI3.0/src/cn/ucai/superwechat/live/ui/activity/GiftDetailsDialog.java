@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,11 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatHelper;
@@ -77,7 +78,8 @@ public class GiftDetailsDialog extends DialogFragment {
     }
 
     private void loadGiftList() {
-        Map<String, Gift> giftList = SuperWeChatHelper.getInstance().getGiftList();
+//        Map<String, Gift> giftList = SuperWeChatHelper.getInstance().getGiftList();
+        Map<String ,Gift> giftList=null;
         if (giftList != null && !giftList.isEmpty()) {
             ArrayList<Gift> gifts=new ArrayList<>();
             for(Gift gift:giftList.values()){
@@ -89,10 +91,11 @@ public class GiftDetailsDialog extends DialogFragment {
                 @Override
                 public void onSuccess(String s) {
                     if (s != null) {
-                        Result result = ResultUtils.getListResultFromJson(s, Result.class);
+                        Result result = ResultUtils.getListResultFromJson(s, Gift.class);
                         if (result != null && result.isRetMsg()) {
-                            ArrayList<Gift> gifts = (ArrayList<Gift>) result.getRetData();
+                            List<Gift> gifts = (List<Gift>) result.getRetData();
                             if (gifts != null && gifts.size() > 0) {
+                                Log.e("main",gifts.toString());
                                 adapter.initData(gifts);
                                 SuperWeChatHelper.getInstance().updateAppGiftList(gifts);
 
@@ -111,13 +114,12 @@ public class GiftDetailsDialog extends DialogFragment {
     }
 
 
-    @OnClick(R.id.btn_follow)
-    void onFollowBtnClick() {
-    }
 
+    public void setDetailsDialogListener(View.OnClickListener Listener) {
+        if (Listener!=null&&adapter!=null){
+            adapter.setListener(Listener);
+        }
 
-    public void setUserDetailsDialogListener( View.OnClickListener Listener) {
-        adapter.setListener(Listener);
     }
 
 

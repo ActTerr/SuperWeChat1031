@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+  
   <com.ucloud.live.widget.UAspectFrameLayout
       android:id="@+id/container"
       android:layout_width="match_parent"
@@ -81,10 +81,10 @@
           android:background="@drawable/live_cam"
           />
 
-      <ImageButton
+      <Button
           android:id="@+id/img_bt_close"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:layout_width="25dp"
+          android:layout_height="25dp"
           android:layout_marginLeft="5dp"
           android:layout_marginRight="15dp"
           android:background="@drawable/live_close"
@@ -111,24 +111,21 @@
       android:textStyle="bold"
       android:visibility="gone"
       />
-
-  <com.easemob.livedemo.ui.widget.RoomMessagesView
+  <cn.ucai.superwechat.live.ui.widget.RoomMessagesView
       android:id="@+id/message_view"
       android:layout_width="match_parent"
       android:layout_height="174dp"
       android:layout_alignParentBottom="true"
       android:visibility="invisible"
       />
-
-  <com.easemob.livedemo.ui.widget.BarrageLayout
+  <cn.ucai.superwechat.live.ui.widget.BarrageLayout
       android:id="@+id/barrage_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_above="@id/message_view"
       android:layout_marginBottom="10dp"
       />
-
-  <com.easemob.livedemo.ui.widget.PeriscopeLayout
+  <cn.ucai.superwechat.live.ui.widget.PeriscopeLayout
       android:id="@+id/periscope_layout"
       android:layout_width="150dp"
       android:layout_height="190dp"
@@ -137,7 +134,7 @@
       android:layout_marginBottom="42dp"
       />
 
-  <com.easemob.livedemo.ui.widget.LiveLeftGiftView
+  <cn.ucai.superwechat.live.ui.widget.LiveLeftGiftView
       android:id="@+id/left_gift_view1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -145,7 +142,7 @@
       android:layout_marginBottom="4dp"
       android:visibility="invisible"
       />
-  <com.easemob.livedemo.ui.widget.LiveLeftGiftView
+  <cn.ucai.superwechat.live.ui.widget.LiveLeftGiftView
       android:id="@+id/left_gift_view2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

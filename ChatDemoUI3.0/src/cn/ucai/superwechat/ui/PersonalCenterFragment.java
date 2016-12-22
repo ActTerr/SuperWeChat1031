@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.easemob.redpacketui.utils.RedPacketUtil;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 
@@ -68,7 +69,7 @@ public class PersonalCenterFragment extends Fragment {
         switch (view.getId()) {
             case R.id.txt_package:
                 MFGT.gotoChange(getActivity());
-//                RedPacketUtil.startChangeActivity(mContext);
+                RedPacketUtil.startChangeActivity(mContext);
                 break;
             case R.id.txt_set:
                 MFGT.startActivity(mContext,SettingsActivity.class);

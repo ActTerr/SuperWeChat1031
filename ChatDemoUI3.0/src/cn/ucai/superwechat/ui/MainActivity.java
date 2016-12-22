@@ -63,13 +63,18 @@ import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.adapter.MainTabAdpter;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.dao.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.dialog.ActionItem;
 import cn.ucai.superwechat.dialog.TitlePopup;
+import cn.ucai.superwechat.live.data.model.Wallet;
 import cn.ucai.superwechat.runtimepermissions.PermissionsManager;
 import cn.ucai.superwechat.runtimepermissions.PermissionsResultAction;
 import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.utils.ResultUtils;
 import cn.ucai.superwechat.widget.DMTabHost;
 import cn.ucai.superwechat.widget.MFViewPager;
 
@@ -200,6 +205,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
      * init views
      */
     private void initView() {
+        loadChange();
         unreadLabel = (TextView) findViewById(R.id.unread_count);
         //unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
 //		mTabs = new Button[3];
@@ -253,7 +259,33 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         });
     }
 
-    private void setTitleText(int position) {
+    private void loadChange() {
+        NetDao.loadChange(this, EMClient.getInstance().getCurrentUser(), new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                if (s != null) {
+                    Result result = ResultUtils.getResultFromJson(s, Wallet.class);
+                    if (result != null && result.isRetMsg()) {
+                        Wallet wallet = (Wallet) result.getRetData();
+                        if (wallet != null) {
+                            SuperWeChatHelper.getInstance().setCurrentUserChange(String.valueOf(wallet.getBalance()));
+                        } else {
+                        }
+
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+
+        });
+    }
+            private void setTitleText(int position) {
         String text[] = new String[]{"微信", "通讯录", "发现", "我"};
         tvTitleCenter.setText(text[position]);
     }
@@ -287,6 +319,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 //		// set current tab selected
 //		mTabs[index].setSelected(true);
 //		currentTabIndex = index;
+
 //	}
 
     EMMessageListener messageListener = new EMMessageListener() {

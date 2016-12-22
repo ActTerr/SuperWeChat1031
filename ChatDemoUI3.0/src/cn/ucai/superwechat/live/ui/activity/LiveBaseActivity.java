@@ -1,6 +1,8 @@
 package cn.ucai.superwechat.live.ui.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,9 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -80,7 +84,7 @@ public abstract class LiveBaseActivity extends BaseActivity {
     TextView audienceNumView;
     @BindView(R.id.new_messages_warn)
     ImageView newMsgNotifyImage;
-
+   GiftDetailsDialog dialog1;
     protected String anchorId;
 
     /**
@@ -426,17 +430,18 @@ public abstract class LiveBaseActivity extends BaseActivity {
             newMsgNotifyImage.setVisibility(View.INVISIBLE);
         }
     }
+    View.OnClickListener mListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
+            int id = (int) v.getTag();
+            payGiftMessage(id);
+            dialog1.dismiss();
+        }
+    };
     private void showGiftDetailsDialog() {
-        final GiftDetailsDialog dialog = GiftDetailsDialog.newInstance();
-        dialog.setUserDetailsDialogListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                int id = (int) v.getTag();
-                payGiftMessage(id);
-            }
-        });
+        dialog1= GiftDetailsDialog.newInstance();
+        dialog1.setDetailsDialogListener(mListener);
 //    dialog.setUserDetailsDialogListener(
 //            new RoomUserDetailsDialog.UserDetailsDialogListener() {
 //              @Override public void onMentionClick(String username) {
@@ -445,11 +450,11 @@ public abstract class LiveBaseActivity extends BaseActivity {
 //                showInputView();
 //              }
 //            });
-        dialog.show(getSupportFragmentManager(), "RoomUserDetailsDialog");
+        dialog1.show(getSupportFragmentManager(), "RoomUserDetailsDialog");
     }
 
     private void showUserDetailsDialog(String username) {
-        final RoomUserDetailsDialog dialog =
+        final RoomUserDetailsDialog dialog=
                 RoomUserDetailsDialog.newInstance(username);
         dialog.setUserDetailsDialogListener(
                 new RoomUserDetailsDialog.UserDetailsDialogListener() {
@@ -541,7 +546,9 @@ public abstract class LiveBaseActivity extends BaseActivity {
 
     private void payGiftMessage(final int id) {
         int change = Integer.parseInt(SuperWeChatHelper.getInstance().getCurrentUserChange());
-        Gift gift = SuperWeChatHelper.getInstance().getGiftList().get(id);
+        final Gift gift = SuperWeChatHelper.getInstance().getGiftList().get(id);
+
+
         if (change > gift.getGprice()) {
 
             NetDao.sendGift(this, EMClient.getInstance().getCurrentUser(), anchorId, id, new OkHttpUtils.OnCompleteListener<String>() {
@@ -552,8 +559,10 @@ public abstract class LiveBaseActivity extends BaseActivity {
                         if (result != null && result.isRetMsg()) {
                             Wallet wallet = (Wallet) result.getRetData();
                             if (wallet != null) {
-                                sendGiftMessage(id);
-                                SuperWeChatHelper.getInstance().setCurrentUserChange(String.valueOf(wallet.getBalance()));
+                                if (SuperWeChatHelper.getInstance().getUserProfileManager().getTips()!=true){
+                                    showdialog(gift,wallet);
+                                }
+
                             } else {
                             }
 
@@ -568,9 +577,55 @@ public abstract class LiveBaseActivity extends BaseActivity {
                 }
             });
         } else {
-            Toast.makeText(this, "money no enough", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle("余额不足");
+            builder.setMessage("请充值！");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.create().show();
         }
 
+    }
+
+    private void showdialog(final Gift gift, final Wallet wallet) {
+        final AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setTitle(null);
+        dialog.setMessage("将要花费"+gift.getGprice());
+        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sendGiftMessage(gift.getId());
+                SuperWeChatHelper.getInstance().setCurrentUserChange(String.valueOf(wallet.getBalance()));
+                dialog.dismiss();
+            }
+        });
+        dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                return;
+            }
+        });
+        LinearLayout linearLayout= (LinearLayout) getLayoutInflater().inflate(R.layout.dialog,null);
+        CheckBox cb= (CheckBox) linearLayout.findViewById(R.id.not_tips);
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SuperWeChatHelper.getInstance().getUserProfileManager().setTips(isChecked);
+            }
+        });
+        dialog.setView(linearLayout);
+        dialog.create().show();
     }
 
     private void sendGiftMessage(int id) {

@@ -107,7 +107,7 @@ public class SuperWeChatHelper {
     private Map<String, EaseUser> contactList;
 
     private Map<String, User> appContactList;
-    private Map<String,Gift> appGiftList;
+    private Map<Integer,Gift> appGiftList;
     private Map<String, User> strangerContactList=new HashMap<>();
 
     private Map<String, RobotUser> robotList;
@@ -950,7 +950,7 @@ public class SuperWeChatHelper {
 
         contactList = aContactList;
     }
-    public void setAppGiftList(Map<String ,Gift> giftList){
+    public void setAppGiftList(Map<Integer ,Gift> giftList){
         if (giftList==null){
             if (appGiftList!=null){
                 appGiftList.clear();
@@ -985,14 +985,14 @@ public class SuperWeChatHelper {
         return contactList;
     }
 
-    public Map<String, Gift> getGiftList() {
+    public Map<Integer, Gift> getGiftList() {
         if (isLoggedIn() && appGiftList == null) {
             appGiftList = superWeChatModel.getGiftList();
         }
 
         // return a empty non-null object to avoid app crash
         if (appGiftList == null) {
-            return new Hashtable<String, Gift>();
+            return new Hashtable<Integer, Gift>();
         }
 
         return appGiftList;
@@ -1407,7 +1407,7 @@ public class SuperWeChatHelper {
     }
 
     public void saveGiftList(Gift gift){
-        appGiftList.put(gift.getGname(),gift);
+        appGiftList.put(gift.getId(),gift);
         superWeChatModel.saveGift(gift);
     }
     /**
@@ -1428,6 +1428,7 @@ public class SuperWeChatHelper {
         return appContactList;
     }
 
+
     public void updateAppContactList(List<User> contactInfoList) {
         for (User u : contactInfoList) {
             appContactList.put(u.getMUserName(), u);
@@ -1437,8 +1438,11 @@ public class SuperWeChatHelper {
         superWeChatModel.saveAppContactList(mList);
     }
     public void updateAppGiftList(List<Gift> giftList) {
+        appGiftList=new HashMap<>();
+        Log.e("main",giftList.size()+"");
         for (Gift gift: giftList) {
-            appGiftList.put(gift.getGname(), gift);
+            Log.e("main",gift.toString());
+            appGiftList.put(gift.getId(), gift);
         }
         ArrayList<Gift> mList = new ArrayList<>();
         mList.addAll(appGiftList.values());

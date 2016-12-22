@@ -50,10 +50,10 @@ public class UserDao {
 	public static final String USER_COLUMN_AVATAR_LASTUPDATE_TIME="m_user_lastupdate";
 
 	public static final String GIFT_TABLE_NAME="t_gift";
-	public static final String GIFT_NAME="name";
-	public static final String GIFT_AVATAR="avatar";
-	public static final String GIFT_ID="id";
-	public static final String GIFT_PRICE="price";
+	public static final String GIFT_NAME="gname";
+	public static final String GIFT_AVATAR="gurl";
+	public static final String GIFT_ID="gid";
+	public static final String GIFT_PRICE="gprice";
 	public boolean saveUser(User user){
 		return SuperWeChatManager.getInstance().saveUser(user);
 	}
@@ -146,7 +146,7 @@ public class UserDao {
 		SuperWeChatManager.getInstance().saveAppGiftList(mList);
 	}
 
-	public Map<String,Gift> getGiftList() {
+	public Map<Integer,Gift> getGiftList() {
 		return SuperWeChatManager.getInstance().getGiftList();
 	}
 }

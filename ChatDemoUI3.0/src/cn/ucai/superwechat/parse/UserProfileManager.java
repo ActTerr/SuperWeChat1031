@@ -4,15 +4,16 @@ import android.content.Context;
 
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
-import cn.ucai.superwechat.SuperWeChatHelper;
-import cn.ucai.superwechat.SuperWeChatHelper.DataSyncListener;
-import cn.ucai.superwechat.ui.ContactListFragment;
-import cn.ucai.superwechat.utils.PreferenceManager;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.ucai.superwechat.SuperWeChatHelper;
+import cn.ucai.superwechat.SuperWeChatHelper.DataSyncListener;
+import cn.ucai.superwechat.ui.ContactListFragment;
+import cn.ucai.superwechat.utils.PreferenceManager;
 
 public class UserProfileManager {
 
@@ -38,6 +39,7 @@ public class UserProfileManager {
 
 	private User appCurrentUser;
 
+	private boolean isChecked;
 	public UserProfileManager() {
 	}
 
@@ -184,4 +186,10 @@ public class UserProfileManager {
 	}
 
 
+	public void setTips(boolean isChecked) {
+		this.isChecked=isChecked;
+	}
+	public boolean getTips(){
+		return this.isChecked;
+	}
 }

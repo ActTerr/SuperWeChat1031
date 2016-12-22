@@ -40,12 +40,12 @@
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_switch_button.xml"
     },
     {
-        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_title_bar.xml",
-        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_title_bar.xml"
-    },
-    {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_emojicon_tab_bar.xml",
         "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_emojicon_tab_bar.xml"
+    },
+    {
+        "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_widget_title_bar.xml",
+        "source": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/res/layout/ease_widget_title_bar.xml"
     },
     {
         "merged": "/Users/mac-yk/AndroidStudioProjects/mSuperWeChat/easeui/build/intermediates/res/merged/debug/layout/ease_fragment_chat.xml",
